@@ -15,43 +15,10 @@
 
         <main>
             <table class=board id="playerBoard">
-                <tr>
-                    <th>
-                            <div id="01" class="squarePlayer"> 
-                                    <button type="button">
-                                        1
-                                    </button> 
-                            </div>
-                    </th>
-                    <th>
-                            <div id="02" class="squarePlayer"> 
-                                    <button type="button">
-                                        2
-                                    </button> 
-                                </div>
-                    </th>
-
-                </tr>
-                <tr>
-                    <th>
-                            <div id="03" class="squarePlayer"> 
-                                    <button type="button">
-                                        3
-                                    </button> 
-                            </div>
-                    </th>
-                    <th>
-
-                            <div id="04" class="squarePlayer"> 
-                                    <button type="button">
-                                        4
-                                    </button> 
-                                </div>
-                    </th>
-                </tr>
-
-
-
+                <!-- Will be filled with js -->
+            </table>>
+            <table class=board id="opponentBoard">
+                <!-- Will be filled with js -->
             </table>>
         </main>
 
@@ -64,24 +31,10 @@
                 <span>Enemy name</span>
             </footer>
         </main>
-        <!-- This import is very far from optimal 
-            (but at easy to implement): 
-             every time the page is loaded, 
-             the English dictionary is loaded;
-             a better solution would be LocalStorage
-        -->
-        <script src="data/english.js"></script>
 
-        <!-- In general, in a production environment, 
-             all files would be compressed into a single one
-             to avoid multiple HTTP requests.
-             Automatic tools are available for this step.
-        -->
-        <script src="javascripts/config.js"></script> 
-        <script src="javascripts/statuses.js"></script>
-        <script src="javascripts/messages.js"></script>
-        <script src="javascripts/alphabet.js"></script>
-        <script src="javascripts/ui-right.js"></script>
-        <script src="javascripts/interactions.js"></script> <!-- browser parses the code from top to bottom, by now the DOM is built -->
+        
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="javascripts/game.js"></script>
+
     </body>
 </html>

@@ -15,4 +15,33 @@ body {
     width: 500px;
     height: auto;
   }
+
+  * {
+    margin: 0; 
+    padding: 0; 
+  }
+  
+  table { 
+    border-collapse: collapse; 
+    border-spacing: 0; 
+  }
+  
+  .board { 
+    padding: 0px; 
+    margin: 0 auto; 
+    border: 2px solid #181818; 
+  }
+  
+  .board tr td { 
+    width: 60px; 
+    height: 60px; 
+  }
+  
+  .board tr:nth-child(2n) td:nth-child(2n+1) { 
+    background: #9f9f9f; 
+  }
+  
+  .board tr:nth-child(2n+1) td:nth-child(2n) { 
+    background: #9f9f9f; 
+  }
   
