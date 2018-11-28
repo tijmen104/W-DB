@@ -4,26 +4,31 @@ main = function () {
   generateBoard("#opponentBoard");
 }
 
-Square = function (x, y) {
+Square = function (x, y, buttonID) {
   this.x = x;
   this.y = y;
+  this.buttonID = buttonID;
 }
 Square.prototype.getX = function() { return this.x};
 Square.prototype.getY = function() { return this.y};
+Square.prototype.getButtonID = function() { return this.buttonID};
 
 
 generateBoard = function(tableId) {
   var space = 1;
+  var id = 0;
   for (var r=0; r<8; r++) {
     var col = "";
     for (var c=0; c<8; c++) { 
-      var square = new Square(r,c);
-      
-      col += "<td data-pos='"+space+"'></td>"; space++; 
+      var square = new Square(r,c, id);
+      var buttonTemplate = "<button type=\"button\" class=boardButton id=b" + id + "></button>"
+      col += "<td data-pos='"+space+"'>"+ buttonTemplate +"</td>"; space++; 
+      id++;
     }
 
     $(tableId).append("<tr>"+col+"</tr>");
   }
+  
 }
 
 

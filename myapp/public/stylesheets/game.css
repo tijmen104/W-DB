@@ -8,7 +8,8 @@ body {
   }
 
   button {
-      color:purple;
+      width: 100%;
+      height: 100%;
   }
 
   #logo {
@@ -36,12 +37,17 @@ body {
     width: 60px; 
     height: 60px; 
   }
-  
-  .board tr:nth-child(2n) td:nth-child(2n+1) { 
-    background: #9f9f9f; 
+
+  button:hover {
+    background:black;
+    color:black;
   }
-  
-  .board tr:nth-child(2n+1) td:nth-child(2n) { 
-    background: #9f9f9f; 
+
+  button:active {
+    background: red;
+  }
+
+  button.boardButton#b1 {
+    background: yellow;
   }
   
