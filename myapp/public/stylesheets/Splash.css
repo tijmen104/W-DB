@@ -1,0 +1,21 @@
+@import 'style.css';
+
+h1 {
+    position: absolute;
+    font-size: 400%;
+    top: 200px;
+    left: 50px;
+    color: white;
+}
+
+#left {
+    float: left;
+    width: 70%;
+    background-color: #555
+}
+
+#right {
+    float: left;
+    width: 30%;
+    background-color: #AAA;
+}
