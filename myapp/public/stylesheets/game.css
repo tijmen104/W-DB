@@ -26,6 +26,14 @@ body {
     border-collapse: collapse; 
     border-spacing: 0; 
   }
+
+  #playerBoard {
+    float: left;
+  }
+
+  #opponentBoard {
+    float: right
+  }
   
   .board { 
     padding: 0px; 
@@ -49,5 +57,9 @@ body {
 
   button.boardButton#b1 {
     background: yellow;
+  }
+
+  footer {
+    clear: both;
   }
   
