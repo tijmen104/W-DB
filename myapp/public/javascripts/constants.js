@@ -1,0 +1,1 @@
+var boardSize = 8;

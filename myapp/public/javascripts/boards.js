@@ -1,4 +1,4 @@
-main = function () {
+var generateBoards = function() {
   buttons = new Square();
   generateBoard("#playerBoard");
   generateBoard("#opponentBoard");
@@ -17,9 +17,9 @@ Square.prototype.getButtonID = function() { return this.buttonID};
 generateBoard = function(tableId) {
   var space = 1;
   var id = 0;
-  for (var r=0; r<8; r++) {
+  for (var r=0; r<boardSize; r++) {
     var col = "";
-    for (var c=0; c<8; c++) { 
+    for (var c=0; c<boardSize; c++) { 
       var square = new Square(r,c, id);
       var buttonTemplate = "<button type=\"button\" class=boardButton id=b" + id + "></button>"
       col += "<td data-pos='"+space+"'>"+ buttonTemplate +"</td>"; space++; 
@@ -30,6 +30,3 @@ generateBoard = function(tableId) {
   }
   
 }
-
-
-$(document).ready(main);
