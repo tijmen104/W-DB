@@ -24,7 +24,10 @@ body {
   
   table { 
     border-collapse: collapse; 
-    border-spacing: 0; 
+    border-spacing: 0;
+    
+    width:480px;
+    height:480px;
   }
 
   #playerBoard {
@@ -38,17 +41,24 @@ body {
   .board { 
     padding: 0px; 
     margin: 0 auto; 
-    border: 2px solid #181818; 
+    border: 2px solid #181818;
+    table-layout:fixed;
   }
   
   .board tr td { 
     width: 60px; 
-    height: 60px; 
+    height: 60px;
+    border: 1px solid #181818;
+    overflow:visible;
   }
 
   button:hover {
     background:black;
     color:black;
+  }
+
+  .ship {
+    z-index: -1;
   }
 
   button:active {
@@ -62,4 +72,7 @@ body {
   footer {
     clear: both;
   }
-  
+
+  .playerBoardButton {
+    opacity: 0;
+  }  
