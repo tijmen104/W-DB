@@ -18,7 +18,7 @@ var generateShips = function(ships) {
     for (i = 0; i < ships.array.length; i++) {
         ship = ships.array[i];
         // TODO: it's not good how the sizes are hardcoded here
-        command = "<img draggable=\"true\" border=\"2\" width=\"" + ship.length*60 + "\" height=\"60\"";
+        command = "<img draggable=\"true\" border=\"2\" width=\"" + ship.length*60 + "\" height=\"60\" src=\"images/LogoBBB.png\"";
         col += "<tr data-pos='"+space+"'><td>"+ command +"</td></tr>"; 
         space++; 
     }
