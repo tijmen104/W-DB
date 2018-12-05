@@ -17,12 +17,13 @@ function GameState (session_id, ships) {
     }
 
     this.updateGame = function(clickedLetter) {
-        console.log(document.getElementById(clickedLetter));
+        var button = document.getElementById(clickedLetter)
 
-        var row = $(document.getElementById(clickedLetter).parentElement).parent().index();
-        var column = $(document.getElementById(clickedLetter).parentElement).index();
+        var row = $(button.parentElement).parent().index();
+        var column = $(button.parentElement).index();
         console.log("clicked button with coordinates [" + row + "," + column + "]");
         coordinate = [row, column];
+        var hit = false;
 
         for(i = 0; i < this.ships.array.length; i++) {
             var ship = this.ships.array[i];
@@ -32,12 +33,19 @@ function GameState (session_id, ships) {
                     alert("HIT");
                     shipCoordinates[j].setHit(true);
                     this.checkIfSunk(ship);
+                    hit = true;
                 }
             }
 
         }
-
-        document.getElementById(clickedLetter).disabled = true;
+        if (hit) {
+            console.log(button.className);
+           button.className += " hit";
+        } else {
+            button.className += " missed";
+        }
+        
+        console.log(button);
         console.log('done updating');
         
     };
