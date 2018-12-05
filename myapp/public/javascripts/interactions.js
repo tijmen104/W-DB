@@ -1,8 +1,24 @@
-function GameState (session_id) {
+function GameState (session_id, ships) {
     this.session_id = session_id;
     this.updateGame = function(clickedLetter) {
         //do stuff
-        alert("update game");
+        // var test = $(".boardButton").index("#" + clickedLetter);
+        var row = $(document.getElementById(clickedLetter).parentElement).parent().index();
+        var column = $(document.getElementById(clickedLetter).parentElement).index();
+        console.log("clicked button with coordinates [" + row + "," + column + "]");
+        coordinate = [row, column];
+
+        for(i = 0; i < ships.array.length; i++) {
+            shipCoordinates = ships.array[i].getCoordinates();
+            console.log(shipCoordinates);
+            for (j = 0; j < shipCoordinates.length; j++) {
+                if (row == shipCoordinates[j][0] && column == shipCoordinates[j][1]) {
+                    alert("HIT");
+                }
+            }
+
+        }
+
     };
     
 }
@@ -33,11 +49,16 @@ function ButtonsProcessor(gs){
 (function setUp () {
     generateBoards();
     var ships = new Ships();
-    ships.addShip(new Ship(3));
+    var ship = new Ship(3)
+    ship.setCoordinates([[1,1],[1,2]]); //TODO: remove hardcoded ship coordinates
+    ships.addShip(ship);
+    console.log(ships.array[0])
     ships.addShip(new Ship(2));
+
+    
     generateShips(ships);
 
-    var gs = new GameState(1);
+    var gs = new GameState(1, ships);
 
     var ab = new ButtonsProcessor(gs);
     ab.initialize();

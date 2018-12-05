@@ -11,6 +11,9 @@ function Ship(length) {
 Ship.prototype.setCoordinates = function (coordinates) {
     this.coordinates = coordinates;
 }
+Ship.prototype.getCoordinates = function () {
+    return this.coordinates;
+}
 
 function allowDrop(ev) {
     ev.preventDefault();
