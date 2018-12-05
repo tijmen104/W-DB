@@ -17,8 +17,6 @@ function GameState (session_id, ships) {
     }
 
     this.updateGame = function(clickedLetter) {
-        //do stuff
-        // var test = $(".boardButton").index("#" + clickedLetter);
         var row = $(document.getElementById(clickedLetter).parentElement).parent().index();
         var column = $(document.getElementById(clickedLetter).parentElement).index();
         console.log("clicked button with coordinates [" + row + "," + column + "]");
@@ -36,7 +34,6 @@ function GameState (session_id, ships) {
             }
 
         }
-        console.log('ships: ' + this.ships.array[0].getCoordinates()[0].getHit());
         console.log('done updating');
         
     };
