@@ -7,9 +7,34 @@ Ships.prototype.addShip = function(ship) {
 
 function Ship(length) {
     this.length = length;
+    this.sunk = false;
 }
 Ship.prototype.setCoordinates = function (coordinates) {
     this.coordinates = coordinates;
+}
+Ship.prototype.getCoordinates = function () {
+    return this.coordinates;
+}
+Ship.prototype.sink = function () {
+    this.sunk = true;
+}
+
+function Coordinate (x, y) {
+    this.x = x;
+    this.y = y;
+    this.hit = false;
+}
+Coordinate.prototype.setHit = function (hit) {
+    this.hit = hit;
+}
+Coordinate.prototype.getX = function () {
+    return this.x;
+}
+Coordinate.prototype.getY = function () {
+    return this.y;
+}
+Coordinate.prototype.getHit = function () {
+    return this.hit;
 }
 
 function allowDrop(ev) {
