@@ -17,6 +17,8 @@ function GameState (session_id, ships) {
     }
 
     this.updateGame = function(clickedLetter) {
+        console.log(document.getElementById(clickedLetter));
+
         var row = $(document.getElementById(clickedLetter).parentElement).parent().index();
         var column = $(document.getElementById(clickedLetter).parentElement).index();
         console.log("clicked button with coordinates [" + row + "," + column + "]");
@@ -34,6 +36,11 @@ function GameState (session_id, ships) {
             }
 
         }
+
+        document.getElementById(clickedLetter).disabled = true;
+        console.log(document.getElementById(clickedLetter));
+
+        // $(document.getElementById(clickedLetter)).prop('disabled', true);
         console.log('done updating');
         
     };

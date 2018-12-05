@@ -15,13 +15,9 @@ body {
   #logo {
     width: 500px;
     height: auto;
+    display:inline-block;
   }
 
-  * {
-    margin: 0; 
-    padding: 0; 
-  }
-  
   table { 
     border-collapse: collapse; 
     border-spacing: 0;
@@ -35,12 +31,16 @@ body {
   }
 
   #opponentBoard {
-    float: right
+    float: left;
+  }
+
+  #shipTable {
+    clear: both;
   }
   
   .board { 
     padding: 0px; 
-    margin: 0 auto; 
+    margin: auto 50px; 
     border: 2px solid #181818;
     table-layout:fixed;
   }
@@ -57,16 +57,16 @@ body {
     color:black;
   }
 
+  button:disabled {
+    background: blue;
+  }
+
   .ship {
     z-index: -1;
   }
 
   button:active {
     background: red;
-  }
-
-  button.boardButton#b1 {
-    background: yellow;
   }
 
   footer {
