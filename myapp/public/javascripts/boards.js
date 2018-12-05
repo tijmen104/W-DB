@@ -21,7 +21,7 @@ generateOpponentBoard = function(tableId) {
     var col = "";
     for (var c=0; c<boardSize; c++) { 
       var square = new Square(r,c, id);
-      var buttonTemplate = "<button type=\"button\" class=boardButton ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\" id=b" + id + "></button>";
+      var buttonTemplate = "<button type=\"button\" class=boardButton id=opponentButton" + id + "></button>";
       col += "<td data-pos='"+space+"'>"+ buttonTemplate +"</td>"; space++; 
       id++;
     }
@@ -38,7 +38,7 @@ generatePlayerBoard = function(tableId) {
     var col = "";
     for (var c=0; c<boardSize; c++) { 
       var square = new Square(r,c, id);
-      var buttonTemplate = "<button type=\"button\" class=playerBoardButton ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\" id=b" + id + "></button>";
+      var buttonTemplate = "<button type=\"button\" class=playerBoardButton ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\" id=playerButton" + id + "></button>";
       col += "<td class= rowBoard data-pos='"+space+"'>"+ buttonTemplate +"</td>"; space++; 
       id++;
     }

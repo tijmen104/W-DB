@@ -48,7 +48,7 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    console.log(ev.target.parentElement);
+    console.log(ev.target);
     
     ev.target.parentElement.appendChild(document.getElementById(data));
     ev.target.remove();

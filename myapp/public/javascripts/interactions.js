@@ -38,9 +38,6 @@ function GameState (session_id, ships) {
         }
 
         document.getElementById(clickedLetter).disabled = true;
-        console.log(document.getElementById(clickedLetter));
-
-        // $(document.getElementById(clickedLetter)).prop('disabled', true);
         console.log('done updating');
         
     };
