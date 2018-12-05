@@ -21,9 +21,6 @@ body {
   table { 
     border-collapse: collapse; 
     border-spacing: 0;
-    
-    width:480px;
-    height:480px;
   }
 
   #playerBoard {
@@ -43,6 +40,8 @@ body {
     margin: auto 50px; 
     border: 2px solid #181818;
     table-layout:fixed;
+    width:480px;
+    height:480px;
   }
   
   .board tr td { 

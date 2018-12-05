@@ -61,8 +61,8 @@ var generateShips = function(ships) {
         ship = ships.array[i];
         // TODO: it's not good how the sizes are hardcoded here
         command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/LogoBBB.png\" class=ship id=ship"+ ship.length*60;
-        col += "<tr data-pos='"+space+"'><td>"+ command +"</td></tr>"; 
+        col += "<td>"+ command +"</td>"; 
         space++; 
     }
-    $("#shipTable").append(col);
+    $("#shipTable").append("<tr>" + col + "</tr>");
 }
