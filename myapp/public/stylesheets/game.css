@@ -85,3 +85,7 @@ body {
   .missed {
     background: blue;
   }
+
+  .selected {
+    background: red;
+  }

@@ -43,21 +43,35 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("sourcePlaceHolderId", ev.target.parentElement.firstChild.id)
+    // ev.target.parentElement.
+    // var placeHolder = ev.target.parentElement.firstChild
+
+
+
+
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    console.log(ev.target);
-    var row = $(ev.target).parent().parent().index();
+    
+    var row = $(ev.target).parent().index();
     var column = $(ev.target).parent().parent().index();
-    console.log("clicked button with coordinates [" + row + "," + column + "]");
+    console.log("Dropped front of ship on coordinates [" + row + "," + column + "]");
     
     ev.target.parentElement.appendChild(document.getElementById(data));
+    ev.target.style.height = "0px";
+    ev.target.style.width = "0px";
 
-
-
-    // ev.target.remove();
+    var sourcePlaceHolderId = ev.dataTransfer.getData("sourcePlaceHolderId");
+    var placeHolder = document.getElementById(sourcePlaceHolderId);
+    if (placeHolder.className.valueOf() == "playerBoardPlaceHolder") {
+       
+        placeHolder.style.width = "100%";
+        placeHolder.style.height = "100%";
+        console.log("reset size of placeholder");
+    }
 }
 
 var generateShips = function(ships) {
