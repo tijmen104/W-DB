@@ -70,6 +70,7 @@ function ButtonsProcessor(gs){
 }
 
 (function setUp () {
+    socketSetup();
     generateBoards();
     var ships = new Ships();
     var ship1 = new Ship(3);
