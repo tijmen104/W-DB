@@ -52,6 +52,10 @@ function drag(ev) {
 
 }
 
+var validateCoordinates = function (row, column) {
+    return true; //TODO
+}
+
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
@@ -59,19 +63,22 @@ function drop(ev) {
     var row = $(ev.target).parent().index();
     var column = $(ev.target).parent().parent().index();
     console.log("Dropped front of ship on coordinates [" + row + "," + column + "]");
+    if (validateCoordinates(row, column)) {
+        ev.target.parentElement.appendChild(document.getElementById(data));
+        ev.target.style.height = "0px";
+        ev.target.style.width = "0px";
     
-    ev.target.parentElement.appendChild(document.getElementById(data));
-    ev.target.style.height = "0px";
-    ev.target.style.width = "0px";
-
-    var sourcePlaceHolderId = ev.dataTransfer.getData("sourcePlaceHolderId");
-    var placeHolder = document.getElementById(sourcePlaceHolderId);
-    if (placeHolder.className.valueOf() == "playerBoardPlaceHolder") {
-       
-        placeHolder.style.width = "100%";
-        placeHolder.style.height = "100%";
-        console.log("reset size of placeholder");
+        var sourcePlaceHolderId = ev.dataTransfer.getData("sourcePlaceHolderId");
+        var placeHolder = document.getElementById(sourcePlaceHolderId);
+        if (placeHolder.className.valueOf() == "playerBoardPlaceHolder") {
+           
+            placeHolder.style.width = "100%";
+            placeHolder.style.height = "100%";
+            console.log("reset size of placeholder");
+        }
     }
+    
+    
 }
 
 var generateShips = function(ships) {
