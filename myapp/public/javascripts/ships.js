@@ -49,9 +49,15 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     console.log(ev.target);
+    var row = $(ev.target).parent().parent().index();
+    var column = $(ev.target).parent().parent().index();
+    console.log("clicked button with coordinates [" + row + "," + column + "]");
     
     ev.target.parentElement.appendChild(document.getElementById(data));
-    ev.target.remove();
+
+
+
+    // ev.target.remove();
 }
 
 var generateShips = function(ships) {

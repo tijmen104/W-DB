@@ -38,7 +38,7 @@ generatePlayerBoard = function(tableId) {
     var col = "";
     for (var c=0; c<boardSize; c++) { 
       var square = new Square(r,c, id);
-      var buttonTemplate = "<button type=\"button\" class=playerBoardButton ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\" id=playerButton" + id + "></button>";
+      var buttonTemplate = "<div class=playerBoardPlaceHolder ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\" id=boardElement" + id + "></div>";
       col += "<td class= rowBoard data-pos='"+space+"'>"+ buttonTemplate +"</td>"; space++; 
       id++;
     }
