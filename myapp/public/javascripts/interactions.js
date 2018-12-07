@@ -76,6 +76,7 @@ function ButtonsProcessor(gs, socket){
                     el.removeEventListener("click", singleClick, false);
                     gs.setTurn(false);
                     let msg = Messages.O_SHOT;
+                    // msg.data = ADD WHETHER PLAYER HAS WON OR NOT
                     socket.send(JSON.stringify(msg));
                 }
 
