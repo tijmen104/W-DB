@@ -113,7 +113,7 @@ function ButtonsProcessor(gs){
         $(footer).append("<button type=\"button\" id= messageButton>Send ships</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
-            let shipsMessage = Messages.O_SHIPS;
+            let shipsMessage = Messages.O_SHIPS_SET;
             shipsMessage.data = ships;
             console.log(shipsMessage);
             socket.send(JSON.stringify(shipsMessage));
