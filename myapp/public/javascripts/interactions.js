@@ -104,6 +104,16 @@ function ButtonsProcessor(gs){
     ships.addShip(ship5);
     generateShips(ships);
 
+
+
+
+
+    var gs = new GameState(1, ships);
+
+    var ab = new ButtonsProcessor(gs);
+    
+    var first= true;
+
     (function messageButton() {
         $(footer).append("<button type=\"button\" id= messageButton>Send ships</button>");
         var button = document.getElementById("messageButton");
@@ -119,15 +129,14 @@ function ButtonsProcessor(gs){
         var button = document.getElementById("enableButton");
         button.addEventListener("click", function singleClick(e) {
             gs.setTurn(true);
+            console.log(first);
+            if (first) {
+                ab.initialize();
+                first = false;
+            }
         });
+
     })();
-
-
-
-    var gs = new GameState(1, ships);
-
-    var ab = new ButtonsProcessor(gs);
-    ab.initialize();
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
@@ -147,10 +156,17 @@ function ButtonsProcessor(gs){
         }
 
         if(incomingMsg.type == Messages.T_SHOOT) {
+            if(first) {
+                first = false;
+                ab.initialize();
+
+            }
             gs.setTurn = true;
             
         }
     }
+
+
 
 
 })(); //execute immediately
