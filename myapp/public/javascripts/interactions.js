@@ -17,6 +17,8 @@ function GameState (session_id, ships) {
     }
 
     this.updateGame = function(clickedLetter) {
+        console.log(ships);
+
         var button = document.getElementById(clickedLetter)
 
         var row = $(button.parentElement).parent().index();
@@ -72,16 +74,21 @@ function ButtonsProcessor(gs){
 (function setUp () {
     socketSetup();
     generateBoards();
-    var ships = new Ships();
-    var ship1 = new Ship(3);
-    ship1.setCoordinates([new Coordinate(1,1), new Coordinate(1,2)]); //TODO: remove hardcoded ship coordinates
-    var ship2 = new Ship(2);
-    ship2.setCoordinates([new Coordinate(2,1), new Coordinate(2,2)]); //TODO: remove hardcoded ship coordinates
+    
+    ships = new Ships(); //global
+    var ship1 = new Ship(5, "ship1");
+    var ship2 = new Ship(4, "ship2");
+    var ship3 = new Ship(3, "ship3");
+    var ship4 = new Ship(3, "ship4");
+    var ship5 = new Ship(2, "ship5");
     ships.addShip(ship1);
     ships.addShip(ship2);
-
-    
+    ships.addShip(ship3);
+    ships.addShip(ship4);
+    ships.addShip(ship5);
     generateShips(ships);
+
+
 
     var gs = new GameState(1, ships);
 

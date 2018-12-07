@@ -1,1 +1,1 @@
-var boardSize = 8;
+var boardSize = 10;
