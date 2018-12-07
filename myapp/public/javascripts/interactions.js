@@ -61,7 +61,7 @@ function GameState (session_id, ships) {
     
 }
 
-function ButtonsProcessor(gs){
+function ButtonsProcessor(gs, socket){
 
     //only initialize for player that should actually be able to use the board
     this.initialize = function(){
@@ -75,6 +75,8 @@ function ButtonsProcessor(gs){
                     gs.updateGame(clickedLetter);
                     el.removeEventListener("click", singleClick, false);
                     gs.setTurn(false);
+                    let msg = Messages.O_SHOT;
+                    socket.send(JSON.stringify(msg));
                 }
 
             });
@@ -110,7 +112,7 @@ function ButtonsProcessor(gs){
 
     var gs = new GameState(1, ships);
 
-    var ab = new ButtonsProcessor(gs);
+    var ab = new ButtonsProcessor(gs, socket);
     
     var first= true;
 
