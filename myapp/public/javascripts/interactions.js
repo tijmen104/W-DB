@@ -72,9 +72,30 @@ function ButtonsProcessor(gs){
 }
 
 (function setUp () {
-    socketSetup();
+    // socketSetup();
+    var socket = new WebSocket("ws://localhost:3000");
+    socket.onmessage = function(event){
+        let incomingMsg = JSON.parse(event.data);
+        console.log("you are player " + incomingMsg.data)
+        
+        if(incomingMsg.type == Messages.T_PLAYER_TYPE){
+            if(incomingMsg.data == "A"){
+                // TODO: add function show board of A
+                // showBoardOfA();
+                
+            }
+            if(incomingMsg.data == "B"){
+                // TODO: add function show board of A
+                // showBoardOfB();
+
+            }
+        }
+    }
+
+
+
     generateBoards();
-    
+
     ships = new Ships(); //global
     var ship1 = new Ship(5, "ship1");
     var ship2 = new Ship(4, "ship2");
@@ -87,6 +108,17 @@ function ButtonsProcessor(gs){
     ships.addShip(ship4);
     ships.addShip(ship5);
     generateShips(ships);
+
+    (function messageButton() {
+        $(footer).append("<button type=\"button\" id= messageButton>Send ships</button>");
+        var button = document.getElementById("messageButton");
+        button.addEventListener("click", function singleClick(e) {
+            let shipsMessage = Messages.O_SHIPS;
+            shipsMessage.data = ships;
+            console.log(shipsMessage);
+            socket.send(JSON.stringify(shipsMessage));
+        });
+    })();
 
 
 
