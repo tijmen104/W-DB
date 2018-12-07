@@ -1,6 +1,11 @@
 function GameState (session_id, ships) {
     this.session_id = session_id;
     this.ships = ships;
+    this.turn = false;
+
+    this.setTurn = function (val) {
+        this.turn =  val;
+    }
 
     this.checkIfSunk = function (ship) {
         var sunk = true;
@@ -17,6 +22,8 @@ function GameState (session_id, ships) {
     }
 
     this.updateGame = function(clickedLetter) {
+        console.log("your turn: " + this.turn);
+   
         console.log(ships);
 
         var button = document.getElementById(clickedLetter)
@@ -63,9 +70,13 @@ function ButtonsProcessor(gs){
         Array.from(elements).forEach( function(el){
 
             el.addEventListener("click", function singleClick(e){
-                var clickedLetter = e.target.id;
-                gs.updateGame(clickedLetter);
-                el.removeEventListener("click", singleClick, false);
+                if (gs.turn) {
+                    var clickedLetter = e.target.id;
+                    gs.updateGame(clickedLetter);
+                    el.removeEventListener("click", singleClick, false);
+                    gs.setTurn(false);
+                }
+
             });
         });
     };
@@ -74,23 +85,7 @@ function ButtonsProcessor(gs){
 (function setUp () {
     // socketSetup();
     var socket = new WebSocket("ws://localhost:3000");
-    socket.onmessage = function(event){
-        let incomingMsg = JSON.parse(event.data);
-        console.log("you are player " + incomingMsg.data)
-        
-        if(incomingMsg.type == Messages.T_PLAYER_TYPE){
-            if(incomingMsg.data == "A"){
-                // TODO: add function show board of A
-                // showBoardOfA();
-                
-            }
-            if(incomingMsg.data == "B"){
-                // TODO: add function show board of A
-                // showBoardOfB();
 
-            }
-        }
-    }
 
 
 
@@ -119,6 +114,13 @@ function ButtonsProcessor(gs){
             socket.send(JSON.stringify(shipsMessage));
         });
     })();
+    (function enableButton() {
+        $(footer).append("<button type=\"button\" id= enableButton (temp until we implement yourturn messages)>Enable buttons</button>");
+        var button = document.getElementById("enableButton");
+        button.addEventListener("click", function singleClick(e) {
+            gs.setTurn(true);
+        });
+    })();
 
 
 
@@ -127,14 +129,27 @@ function ButtonsProcessor(gs){
     var ab = new ButtonsProcessor(gs);
     ab.initialize();
 
-    socket.onmessage = function (event) {
-        //if newgame --> zet ships neer
+    socket.onmessage = function(event){
+        let incomingMsg = JSON.parse(event.data);
+        console.log("you are player " + incomingMsg.data)
+        
+        if(incomingMsg.type == Messages.T_PLAYER_TYPE){
+            if(incomingMsg.data == "A"){
+                // TODO: add function show board of A
+                // showBoardOfA();
+                
+            }
+            if(incomingMsg.data == "B"){
+                // TODO: add function show board of A
+                // showBoardOfB();
 
-        //if opponenthasmoved -- > update ui hit/miss/gewonnne/ship down etc
+            }
+        }
 
-        //if yourturn --> je mag zetten -- > stuur wat er is gezet
-
-        // abort game
+        if(incomingMsg.type == Messages.T_SHOOT) {
+            gs.setTurn = true;
+            
+        }
     }
 
 
