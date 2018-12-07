@@ -22,6 +22,14 @@
     type: exports.T_MOVE_MADE,
     data:null
  };
+ /**
+  * Client to server: game ended;
+  */
+ exports.T_GAME_ENDED = "GAME-ENDED";
+ exports.O_GAME_ENDED = {
+    type: exports.T_GAME_ENDED,
+    data:null
+ };
 
  /*
      * Server to client: set as player A 
