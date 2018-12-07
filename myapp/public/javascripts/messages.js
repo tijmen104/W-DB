@@ -46,10 +46,15 @@
      * Client to server: set board
      */
     exports.T_SHIPS = "SHIPS";
-    exports.O_SHIPS ={
-        type: exports.T_BOARD,
+    exports.O_SHIPS_SET ={
+        type: exports.T_SHIPS,
         data: null
     };
+
+    /**
+     * Server to client: board set 
+     */
+    exports.S_SHIPS_SET = JSON.stringify(exports.O_SHIPS_SET);
 
 
 }(typeof exports === "undefined" ? this.Messages = {} : exports)); 

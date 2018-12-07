@@ -22,19 +22,24 @@ wss.on("connection", function connection(ws) {
     
     let con  = ws;
     var playerType = currentGame.addPlayer(ws);
-    let turnIsTo = "A";
-    let boardSet = false;
 
     con.send("You are player: " + playerType);
     con.send((playerType == "A") ? messages.S_PLAYER_A : messages.S_PLAYER_B);
 
-    if(boardSet){
-        if(playerType == turnIsTo) con.send(messages.O_SHOOT);
-    };
+    
 
     con.on("message", function incoming(message) {
-        if(message.type == T_SHIPS){
-            playerType=="A"? currentGame.boardA=message.data : currentGame.boardB=message.data;
+        let oMsg = JSON.parse(message);
+
+        if(oMsg.type == messages.T_SHIPS){
+            playerType=="A"? currentGame.boardA=oMsg.data : currentGame.boardB=oMsg.data;
+        }
+        if(oMsg.type == messages.T_GAME_START&&currentGame.boardSet()){
+            let msg = messages.O_SHIPS_SET;
+            (playerType=="A")? msg.data=currentGame.boardB: msg.data=currentGame.boardA;
+        }
+        if(oMsg.type == messages.O_MOVE_MADE){
+            (playerType=="A")? currentGame.playerB.send(messages.O_SHOOT):currentGame.playerA.send(messages.O_SHOOT);
         }
     });
 });

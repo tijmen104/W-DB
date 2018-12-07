@@ -23,4 +23,8 @@ game.prototype.sendShipsA = function(){
 game.prototype.sendShipsB = function(){
     return this.shipsB;
 }
+game.prototype.boardSet = function(){
+    if(this.shipsA!=null&&this.shipsB!=null) return true;
+    return false;
+}
 module.exports = game;
