@@ -88,4 +88,15 @@ function ButtonsProcessor(gs){
     var ab = new ButtonsProcessor(gs);
     ab.initialize();
 
+    socket.onmessage = function (event) {
+        //if newgame --> zet ships neer
+
+        //if opponenthasmoved -- > update ui hit/miss/gewonnne/ship down etc
+
+        //if yourturn --> je mag zetten -- > stuur wat er is gezet
+
+        // abort game
+    }
+
+
 })(); //execute immediately
