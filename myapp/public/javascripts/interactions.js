@@ -3,6 +3,7 @@ function GameState (session_id, ships) {
     this.ships = ships;
     this.turn = false;
     this.opponentShips = null;
+    this.shotsFired=0;
 
     this.setTurn = function (val) {
         this.turn =  val;
@@ -94,7 +95,13 @@ function ButtonsProcessor(gs, socket){
 
                     } else {
                         msg = Messages.O_MOVE_MADE;
-                        gs.shotsFired++;
+                        var shotsFired = document.getElementById("shotsFired");
+                        if(shotsFired.value==undefined) shotsFired.value=1;
+                        else{ ++shotsFired};
+                        // shotsFired.innerHTML = pad();
+                        var time = document.getElementById("seconds");
+                        console.log(shotsFired.value);
+                        console.log("seconds: " + time.value);
                         msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
@@ -216,4 +223,5 @@ function ButtonsProcessor(gs, socket){
         }
         };
     }
+    
 })(); //execute immediately
