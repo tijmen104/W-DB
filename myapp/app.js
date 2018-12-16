@@ -26,15 +26,24 @@ wss.on("connection", function connection(ws) {
     con.send("You are player: " + playerType);
     con.send((playerType == "A") ? messages.S_PLAYER_A : messages.S_PLAYER_B);
 
+    boardCheck = function(){
+        if(currentGame.boardSet){
+            currentGame.playerA.send(messages.O_GAME_STARTED);
+            currentGame.playerB.send(messages.O_GAME_STARTED);
+            currentGame.playerA.send(messages.S_SHOOT);
+        }
+    }
     con.on("message", function incoming(message) {
         let oMsg = JSON.parse(message);
 
         if(oMsg.type == messages.T_SHIPS){
             if(playerType=="A"){
-                currentGame.boardA=oMsg.data;
+                currentGame.setBoardA(oMsg.data);
+                boardCheck();
                 currentGame.playerB.send(message);
             } else{ 
-                currentGame.boardB=oMsg.data;
+                currentGame.setBoardB(oMsg.data);
+                boardCheck();
                 currentGame.playerA.send(message);
             }
         }

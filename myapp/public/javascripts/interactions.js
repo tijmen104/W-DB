@@ -143,7 +143,8 @@ function ButtonsProcessor(gs, socket){
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
-        console.log("you are player " + incomingMsg.data)
+        console.log("you are player " + incomingMsg.data);
+        console.log("message type:" + incomingMsg.type);
         
         if(incomingMsg.type == Messages.T_PLAYER_TYPE){
             if(incomingMsg.data == "A"){

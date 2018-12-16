@@ -49,11 +49,10 @@
     /*
     * server to client: your turn to shoot
     */
-   exports.T_SHOOT = "Your-turn";
-   exports.O_SHOOT = {
-       type: exports.T_SHOOT,
-       data: null
-    };
+   exports.T_SHOOT = {
+       type: "Your-turn"
+   };
+   exports.S_SHOOT = JSON.stringify(exports.T_SHOOT);
 
     /*
     * client to server: I shot
