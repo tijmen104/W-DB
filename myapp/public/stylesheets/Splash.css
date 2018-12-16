@@ -31,14 +31,6 @@ h1 {
     margin-bottom: 30px;
 }
 
-button:hover {
-    background-color: red;
-    transition: blink-animation 1s ease;
-}
-@keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
+
 
 
