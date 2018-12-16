@@ -88,11 +88,13 @@ function ButtonsProcessor(gs, socket){
                     gs.setTurn(false);
                     let msg;
                     if(gs.checkIfWon()) {
+                        alert("you won!");
                         msg = Messages.O_GAME_ENDED;
-                        msg.O_GAME_ENDED.data = totalSeconds;
+                        msg.data = totalSeconds;
 
                     } else {
                         msg = Messages.O_MOVE_MADE;
+                        gs.shotsFired++;
                         msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
@@ -108,9 +110,6 @@ function ButtonsProcessor(gs, socket){
     // socketSetup();
     var socket = new WebSocket("ws://localhost:3000");
 
-
-
-    counter();
     generateBoards();
 
     ships = new Ships(); //global
@@ -136,8 +135,8 @@ function ButtonsProcessor(gs, socket){
     
     var first= true;
 
-    function messageButton() {
-        $(footer).append("<button type=\"button\" class=standardButton id= messageButton>Ready!</button>");
+    (function messageButton() {
+        $(footer).append("<button type=\"button\" id= messageButton>Ready!</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;
@@ -151,11 +150,11 @@ function ButtonsProcessor(gs, socket){
             button.removeEventListener("click", singleClick, false);
             button.remove();
             processShips(ships);
-            $("gameheader").append("<div class=waiting id=waitingforready>Waiting for other player</div>");
+            $("main").append("<div id=waiting>Waiting for other player</div>");
 
         });
         
-    };
+    })();
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
@@ -172,7 +171,6 @@ function ButtonsProcessor(gs, socket){
             
         }
 
-
         if(incomingMsg.type == Messages.T_SHIPS){
             opponentShips = incomingMsg.data;
             gs.setOpponentShips(opponentShips);
@@ -180,10 +178,10 @@ function ButtonsProcessor(gs, socket){
         }
 
         if(incomingMsg.type == Messages.T_GAME_STARTED) {
-            $("#waitingforready").remove();
+            $("#waiting").remove();
             first = false;
             ab.initialize();
-            
+            counter();
         }
 
         if(incomingMsg.type == Messages.T_GAME_ENDED) {
@@ -200,7 +198,7 @@ function ButtonsProcessor(gs, socket){
     function counter(){
         var minutesLabel = document.getElementById("minutes");
         var secondsLabel = document.getElementById("seconds");
-        var totalSeconds = 0;
+        totalSeconds = 0;
         setInterval(setTime, 1000);
 
         function setTime() {
@@ -209,13 +207,13 @@ function ButtonsProcessor(gs, socket){
         minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
         }
 
-            function pad(val) {
-            var valString = val + "";
-            if (valString.length < 2) {
-                return "0" + valString;
-            } else {
-                return valString;
-            }
+        function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
         };
     }
 })(); //execute immediately
