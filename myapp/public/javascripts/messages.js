@@ -57,7 +57,7 @@
     /*
     * client to server: I shot
     */
-   exports.T_SHOT = "I shot";
+   exports.T_SHOT = "I-shot";
    exports.O_SHOT = {
        type: exports.T_SHOT,
        data: null

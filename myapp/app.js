@@ -37,6 +37,7 @@ wss.on("connection", function connection(ws) {
         let oMsg = JSON.parse(message);
 
         if(oMsg.type == messages.T_SHIPS){
+            console.log("Ships received");
             if(playerType=="A"){
                 currentGame.setBoardA(oMsg.data);
                 boardCheck();

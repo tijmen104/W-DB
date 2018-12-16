@@ -1,1 +1,1 @@
-var boardSize = 10;
+const boardSize = 10;
