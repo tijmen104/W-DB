@@ -1,6 +1,9 @@
 .boardButton {
     width: 100%;
     height: 100%;
+    background-color: white;
+    border: none;
+
 }
 
 .playerBoardPlaceHolder {
@@ -9,48 +12,40 @@
   opacity: 0;
 }
 
-table { 
-    border-collapse: collapse; 
-    border-spacing: 0;
-  }
+.board {
+  float:left;
+  border-collapse: collapse; 
+  border-spacing: 0;
+  padding: 0px; 
+  margin: auto 20px; 
+  border: 2px solid #181818;
+  table-layout:fixed;
+  width:480px;
+  height:480px;
+}
 
-  #playerBoard {
-    float: left;
-  }
+.board tr td { 
+  width: 60px; 
+  height: 60px;
+  overflow:visible;
+  border: 1px solid #181818;
 
-  #opponentBoard {
-    float: left;
-  }
+}
 
-  .board { 
-    padding: 0px; 
-    margin: auto 50px; 
-    border: 2px solid #181818;
-    table-layout:fixed;
-    width:480px;
-    height:480px;
-  }
-  
-  .board tr td { 
-    width: 60px; 
-    height: 60px;
-    border: 1px solid #181818;
-    overflow:visible;
-  }
+.boardButton:hover {
+  background:black;
+  color:black;
+}
 
-  .boardButton:hover {
-    background:black;
-    color:black;
-  }
+.hit {
+  background: red;
+}
 
-  .hit {
-    background: red;
-  }
+.missed {
+  background: blue;
+}
 
-  .missed {
-    background: blue;
-  }
+.selected {
+  background: red;
+}
 
-  .selected {
-    background: red;
-  }
