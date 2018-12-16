@@ -89,6 +89,7 @@ function ButtonsProcessor(gs, socket){
                     let msg;
                     if(gs.checkIfWon()) {
                         msg = Messages.O_GAME_ENDED;
+                        msg.O_GAME_ENDED.data = totalSeconds;
 
                     } else {
                         msg = Messages.O_MOVE_MADE;
@@ -109,7 +110,7 @@ function ButtonsProcessor(gs, socket){
 
 
 
-
+    counter();
     generateBoards();
 
     ships = new Ships(); //global
@@ -191,7 +192,25 @@ function ButtonsProcessor(gs, socket){
         }
     }
 
+    function counter(){
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+        setInterval(setTime, 1000);
 
+        function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        }
 
-
+            function pad(val) {
+            var valString = val + "";
+            if (valString.length < 2) {
+                return "0" + valString;
+            } else {
+                return valString;
+            }
+        };
+    }
 })(); //execute immediately
