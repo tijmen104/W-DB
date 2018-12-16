@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
         req.cookies.visits = 0;
     }
     res.cookie("visits", ++req.cookies.visits);
-    res.render("splash.ejs", {gamesInitialized: 9999999999});
+    res.render("splash.ejs", {gamesInitialized: 9999999999, visits: req.cookies.visits});
 
 });
 
