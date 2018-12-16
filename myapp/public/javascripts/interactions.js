@@ -131,6 +131,14 @@ function ButtonsProcessor(gs, socket){
             console.log(shipsMessage);
             socket.send(JSON.stringify(shipsMessage));
             console.table(JSON.parse(JSON.stringify(shipsMessage)));
+            console.log($(".ship"));
+            
+            $(".ship").each( function(index) {
+                // console.log(index);
+                // console.log($(this));
+                $(this).attr("draggable", "false");
+            });
+
         });
     })();
     (function enableButton() {
@@ -153,25 +161,10 @@ function ButtonsProcessor(gs, socket){
         
         if(incomingMsg.type == Messages.T_PLAYER_TYPE){
             console.log("You are player " + incomingMsg.data);
-            if(incomingMsg.data == "A"){
-                // TODO: add function show board of A
-                // showBoardOfA();
-                
-            }
-            if(incomingMsg.data == "B"){
-                // TODO: add function show board of A
-                // showBoardOfB();
-
-            }
         }
 
         if(incomingMsg.type == Messages.T_SHOOT) {
             console.log("Opponent shot");
-            if(first) {
-                first = false;
-                ab.initialize();
-
-            }
             gs.setTurn = true;
             
         }
@@ -183,6 +176,11 @@ function ButtonsProcessor(gs, socket){
             console.table(opponentShips);
             gs.setOpponentShips(opponentShips);
 
+        }
+
+        if(incomingMsg.type == Messages.GAME_STARTED) {
+            first = false;
+            ab.initialize();
         }
     }
 

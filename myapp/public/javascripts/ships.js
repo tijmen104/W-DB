@@ -83,7 +83,6 @@ function drop(ev) {
                     coordinates.push(new Coordinate(row, column+i));
                 }
                 ship.setCoordinates(coordinates);
-                console.log(ship);
             }
         }
         ships.array.forEach(updateCoordinates);
