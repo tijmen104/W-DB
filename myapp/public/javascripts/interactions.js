@@ -2,29 +2,33 @@ function GameState (session_id, ships) {
     this.session_id = session_id;
     this.ships = ships;
     this.turn = false;
+    this.opponentShips = null;
 
     this.setTurn = function (val) {
         this.turn =  val;
     }
 
+    this.setOpponentShips = function (opShips) {
+        this.opponentShips = opShips;
+    }
+
     this.checkIfSunk = function (ship) {
         var sunk = true;
-        var shipCoordinates = ship.getCoordinates();
+        var shipCoordinates = ship.coordinates;
         for (j = 0; j < shipCoordinates.length; j++) {
-            if (!shipCoordinates[j].getHit()) {
+            if (!shipCoordinates[j].hit) {
                 sunk = false;
             }
         }
         if(sunk) {
             alert("SHIP SUNK");
-            ship.sink();
+            ship.sunk = true;
         }
     }
 
     this.updateGame = function(clickedLetter) {
         console.log("your turn: " + this.turn);
    
-        console.log(ships);
 
         var button = document.getElementById(clickedLetter)
 
@@ -34,13 +38,14 @@ function GameState (session_id, ships) {
         coordinate = [row, column];
         var hit = false;
 
-        for(i = 0; i < this.ships.array.length; i++) {
-            var ship = this.ships.array[i];
-            var shipCoordinates = ship.getCoordinates();
+        for(i = 0; i < this.opponentShips.array.length; i++) {
+            var ship = this.opponentShips.array[i];
+            console.table("Ship: " + ship);
+            var shipCoordinates = ship.coordinates;
             for (j = 0; j < shipCoordinates.length; j++) {
-                if (row == shipCoordinates[j].getX() && column == shipCoordinates[j].getY()) {
+                if (row == shipCoordinates[j].x && column == shipCoordinates[j].y) {
                     alert("HIT");
-                    shipCoordinates[j].setHit(true);
+                    shipCoordinates[j].hit = true;
                     this.checkIfSunk(ship);
                     hit = true;
                 }
@@ -118,13 +123,14 @@ function ButtonsProcessor(gs, socket){
     var first= true;
 
     (function messageButton() {
-        $(footer).append("<button type=\"button\" id= messageButton>Send ships</button>");
+        $(footer).append("<button type=\"button\" id= messageButton>Ready!</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;
             shipsMessage.data = ships;
             console.log(shipsMessage);
             socket.send(JSON.stringify(shipsMessage));
+            console.table(JSON.parse(JSON.stringify(shipsMessage)));
         });
     })();
     (function enableButton() {
@@ -143,7 +149,7 @@ function ButtonsProcessor(gs, socket){
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
-        console.log("Received message" + incomingMsg.type);
+        console.log("Received message " + incomingMsg.type);
         
         if(incomingMsg.type == Messages.T_PLAYER_TYPE){
             console.log("You are player " + incomingMsg.data);
@@ -173,7 +179,9 @@ function ButtonsProcessor(gs, socket){
 
         if(incomingMsg.type == Messages.T_SHIPS){
             console.log("Received opponent's ships");
-            console.table(incomingMsg.data);
+            opponentShips = incomingMsg.data;
+            console.table(opponentShips);
+            gs.setOpponentShips(opponentShips);
 
         }
     }

@@ -27,10 +27,14 @@ function Coordinate (x, y) {
     this.x = x;
     this.y = y;
     this.hit = false;
+
+    this.setHit = function (hit) {
+        this.hit = hit;
+    }
+
+
 }
-Coordinate.prototype.setHit = function (hit) {
-    this.hit = hit;
-}
+
 Coordinate.prototype.getX = function () {
     return this.x;
 }
