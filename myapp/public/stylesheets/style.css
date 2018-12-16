@@ -13,3 +13,13 @@ a {
 .head-square {
   display: inline-block;
 }
+
+.standardButton {
+  color: #fff;
+  bottom: 100px;
+  right: 250px;
+  font-size: 200%;
+  border: 5px;
+  padding: 30px;
+  border-radius: 20px;
+}

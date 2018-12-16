@@ -216,8 +216,4 @@ function ButtonsProcessor(gs, socket){
         }
         };
     }
-    function updateShots(){
-        var shotsFired =document.getElementById("shotsFired");
-        shotsFired.innerHTML = pad(++shotsFired);
-    }
 })(); //execute immediately
