@@ -21,10 +21,12 @@
     /**
      * Server to client: set ships
      */
-    exports.T_PLAYERS_CONNECTED={
-        type:"PLAYERS-CONNECTED"
+    exports.T_PLAYERS_CONNECTED= "PLAYERS-CONNECTED";
+    exports.O_PLAYERS_CONNECTED= {
+        type: exports.T_PLAYERS_CONNECTED
     };
-    exports.S_PLAYERS_CONNECTED = JSON.stringify(exports.T_PLAYERS_CONNECTED);
+
+    exports.S_PLAYERS_CONNECTED = JSON.stringify(exports.O_PLAYERS_CONNECTED);
 
     /**
      * Client to server: I set board
@@ -41,18 +43,19 @@
     /*
    * Server to client: Game started
    */
-    exports.T_GAME_STARTED = {
-        type: "GAME-STARTED"
-    };
-
-    exports.O_GAME_STARTED = JSON.stringify(exports.T_GAME_STARTED);
+    exports.T_GAME_STARTED = "GAME-STARTED";
+    exports.O_GAME_STARTED = {
+        type: exports.T_GAME_STARTED
+    }
+    exports.S_GAME_STARTED = JSON.stringify(exports.O_GAME_STARTED);
     /*
     * server to client: your turn to shoot
     */
-   exports.T_SHOOT = {
-       type: "Your-turn"
-   };
-   exports.S_SHOOT = JSON.stringify(exports.T_SHOOT);
+   exports.T_SHOOT = "Your-turn";
+   exports.O_SHOOT = {
+       type: exports.T_SHOOT
+   }
+   exports.S_SHOOT = JSON.stringify(exports.O_SHOOT);
 
     /*
     * client to server: I shot

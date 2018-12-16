@@ -141,24 +141,23 @@ function ButtonsProcessor(gs, socket){
 
         });
     })();
-    (function enableButton() {
-        $(footer).append("<button type=\"button\" id= enableButton (temp until we implement yourturn messages)>Enable buttons</button>");
-        var button = document.getElementById("enableButton");
-        button.addEventListener("click", function singleClick(e) {
-            gs.setTurn(true);
-            console.log(first);
-            if (first) {
-                ab.initialize();
-                first = false;
-            }
-        });
+    // (function enableButton() {
+    //     $(footer).append("<button type=\"button\" id= enableButton (temp until we implement yourturn messages)>Enable buttons</button>");
+    //     var button = document.getElementById("enableButton");
+    //     button.addEventListener("click", function singleClick(e) {
+    //         gs.setTurn(true);
+    //         console.log(first);
+    //         if (first) {
+    //             ab.initialize();
+    //             first = false;
+    //         }
+    //     });
 
-    })();
+    // })();
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
-        console.log("you are player " + incomingMsg.data);
-        console.log("message type:" + incomingMsg.type);
+        console.log("message type: " + incomingMsg.type);
         
         if(incomingMsg.type == Messages.T_PLAYER_TYPE){
             console.log("You are player " + incomingMsg.data);
@@ -166,7 +165,7 @@ function ButtonsProcessor(gs, socket){
 
         if(incomingMsg.type == Messages.T_SHOOT) {
             console.log("Opponent shot");
-            gs.setTurn = true;
+            gs.setTurn(true);
             
         }
 
@@ -179,7 +178,8 @@ function ButtonsProcessor(gs, socket){
 
         }
 
-        if(incomingMsg.type == Messages.GAME_STARTED) {
+        if(incomingMsg.type == Messages.T_GAME_STARTED) {
+            console.log("Game started");
             first = false;
             ab.initialize();
         }
