@@ -136,7 +136,7 @@ function ButtonsProcessor(gs, socket){
     var first= true;
 
     function messageButton() {
-        $(footer).append("<button type=\"button\" id= messageButton>Ready!</button>");
+        $(footer).append("<button type=\"button\" class=standardButton id= messageButton>Ready!</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;
@@ -150,7 +150,7 @@ function ButtonsProcessor(gs, socket){
             button.removeEventListener("click", singleClick, false);
             button.remove();
             processShips(ships);
-            $("main").append("<div class=waiting id=waitingforready>Waiting for other player</div>");
+            $("gameheader").append("<div class=waiting id=waitingforready>Waiting for other player</div>");
 
         });
         

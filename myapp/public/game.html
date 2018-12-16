@@ -8,32 +8,34 @@
     <body>
         <main>
             <header>
-                <div class="head-container">
+                <div class="head-container" id="gameheader">
                     <div class="head-square">
                         <img src="images/LogoBBB.png" alt="Logo" id="logo"> 
+                        <div  class="waiting" id="waitingforjoin">Waiting for other player to join...</div>
                     </div>
                 </div>
             </header>
-            <section id="top">
-                    <div class ="head-container">
-                      <div class="head-square" id="logo">
-                        <img src="images/LogoBBB.png" alt="Game logo" height="100" width="350">
-                      </div>
-                      <div class="head-square">
-                          <p  class="waiting" id="waitingforjoin">Waiting for other player to join...</p>
-                      </div>
+            <div class="head-container" id="gameheader">
+                <div class="head-square">
+                    <table class=board id="playerBoard">
+                            <!-- Will be filled with js -->
+                    </table>
+                    <table class=board id="opponentBoard">
+                        <!-- Will be filled with js -->
+                    </table>
 
-                    </div>
-                </section>
-            <table class=board id="playerBoard">
-                <!-- Will be filled with js -->
-            </table>
-            <table class=board id="opponentBoard">
-                <!-- Will be filled with js -->
-            </table>
-            <table id=shipTable>
-                <!-- Will be filled with js -->
-            </table>
+                </div>
+            </div>
+            <div class="head-container" id="gameheader">
+                <div class="head-square">
+                    <table id=shipTable>
+                            <!-- Will be filled with js -->
+                    </table>
+                </div>
+            </div>
+
+            
+
         </main>
 
             <footer id="footer">

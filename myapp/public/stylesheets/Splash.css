@@ -26,14 +26,8 @@ h1 {
 #right-tab{
     margin: 10px
 }
-button {
-    color: #fff;
-    bottom: 100px;
-    right: 250px;
-    font-size: 200%;
-    border: 5px;
-    padding: 30px;
-    border-radius: 20px;
+
+#start_game_button {
     margin-bottom: 30px;
 }
 
