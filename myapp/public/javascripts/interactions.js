@@ -120,15 +120,15 @@ function ButtonsProcessor(gs, socket){
     generateBoards();
 
     ships = new Ships(); //global
-    // var ship1 = new Ship(5, "ship1");
-    // var ship2 = new Ship(4, "ship2");
-    // var ship3 = new Ship(3, "ship3");
-    // var ship4 = new Ship(3, "ship4");
+    var ship1 = new Ship(5, "ship1");
+    var ship2 = new Ship(4, "ship2");
+    var ship3 = new Ship(3, "ship3");
+    var ship4 = new Ship(3, "ship4");
     var ship5 = new Ship(2, "ship5");
-    // ships.addShip(ship1);
-    // ships.addShip(ship2);
-    // ships.addShip(ship3);
-    // ships.addShip(ship4);
+    ships.addShip(ship1);
+    ships.addShip(ship2);
+    ships.addShip(ship3);
+    ships.addShip(ship4);
     ships.addShip(ship5);
     generateShips(ships);
 
@@ -142,8 +142,8 @@ function ButtonsProcessor(gs, socket){
     
     var first= true;
 
-    (function messageButton() {
-        $(footer).append("<button type=\"button\" id= messageButton>Ready!</button>");
+    function messageButton() {
+        $(footer).append("<button class=standardButton type=\"button\" id= messageButton>Ready!</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;
@@ -161,7 +161,7 @@ function ButtonsProcessor(gs, socket){
 
         });
         
-    })();
+    };
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);

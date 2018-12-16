@@ -1,11 +1,6 @@
 @import 'style.css';
 @import 'game_board.css';
 
-body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 #logo {
   width: 500px;
   height: auto;
@@ -18,7 +13,7 @@ body {
 
 .ship {
   z-index: -1;
-  background-color: black;
+  border-radius: 50px;
 }
 
 .boardButton:active {

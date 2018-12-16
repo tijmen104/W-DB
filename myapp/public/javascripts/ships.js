@@ -104,8 +104,8 @@ var generateShips = function(ships) {
     for (i = 0; i < ships.array.length; i++) {
         ship = ships.array[i];
         // TODO: it's not good how the sizes are hardcoded here
-        // command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/black.png\" class=ship id=" + ship.getId() + ">";
-        command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/LogoBBB.png\" class=ship id=" + ship.getId() + ">";
+        command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/black.png\" class=ship id=" + ship.getId() + ">";
+        // command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/LogoBBB.png\" class=ship id=" + ship.getId() + ">";
         col += "<td>"+ command +"</td>"; 
         space++; 
     }
