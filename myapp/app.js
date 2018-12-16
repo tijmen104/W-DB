@@ -29,6 +29,7 @@ const wss = new websocket.Server({ server });
 var websockets = {};
 var gameID=0;
 var currentGame = new game(gameID++);
+var shipsPlaced = null;
 var gamesFinished=0;
 var averageTime = 0;
 var totalTime=0;
@@ -41,10 +42,11 @@ wss.on("connection", function connection(ws) {
 
     var playerType = currentGame.addPlayer(ws);
     if(playerType == "B") {
+        currentGame.playerA.send(messages.S_PLACE);
+        currentGame.playerB.send(messages.S_PLACE);
         currentGame = new game(gameID++);
     }
 
-    con.send("You are player: " + playerType);
     con.send((playerType == "A") ? messages.S_PLAYER_A : messages.S_PLAYER_B);
 
     boardCheck = function(game){

@@ -136,7 +136,7 @@ function ButtonsProcessor(gs, socket){
     
     var first= true;
 
-    (function messageButton() {
+    function messageButton() {
         $(footer).append("<button type=\"button\" id= messageButton>Ready!</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
@@ -151,11 +151,11 @@ function ButtonsProcessor(gs, socket){
             button.removeEventListener("click", singleClick, false);
             button.remove();
             processShips(ships);
-            $("main").append("<div id=waiting>Waiting for other player</div>");
+            $("main").append("<div class=waiting id=waitingforready>Waiting for other player</div>");
 
         });
         
-    })();
+    };
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
@@ -180,7 +180,7 @@ function ButtonsProcessor(gs, socket){
         }
 
         if(incomingMsg.type == Messages.T_GAME_STARTED) {
-            $("#waiting").remove();
+            $("#waitingforready").remove();
             first = false;
             ab.initialize();
             
@@ -189,6 +189,11 @@ function ButtonsProcessor(gs, socket){
         if(incomingMsg.type == Messages.T_GAME_ENDED) {
             alert("YOU LOST");
             gs.setTurn(false);
+        }
+
+        if(incomingMsg.type == Messages.T_PLACE) {
+            $("#waitingforjoin").remove();
+            messageButton();
         }
     }
 

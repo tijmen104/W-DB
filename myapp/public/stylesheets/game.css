@@ -91,10 +91,11 @@ body {
     background: red;
   }
 
-  #waiting {
+  .waiting {
     font-size: 50pt;
     position: absolute;
     top: 50%;
     right: 50%;
     background-color: white;
   }
+  
