@@ -103,6 +103,9 @@ function ButtonsProcessor(gs, socket){
                         msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
+                    setTimeout(function () {
+                        new Audio("../data/gun.wav").play();
+                    }, 200);
                 }
 
             });
