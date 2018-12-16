@@ -143,17 +143,16 @@ function ButtonsProcessor(gs, socket){
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
-        console.log("you are player " + incomingMsg.data)
+        console.log("Received message" + incomingMsg.type);
         
         if(incomingMsg.type == Messages.T_PLAYER_TYPE){
+            console.log("You are player " + incomingMsg.data);
             if(incomingMsg.data == "A"){
-                console.log("You a player A");
                 // TODO: add function show board of A
                 // showBoardOfA();
                 
             }
             if(incomingMsg.data == "B"){
-                console.log("You are player B");
                 // TODO: add function show board of A
                 // showBoardOfB();
 
@@ -169,6 +168,13 @@ function ButtonsProcessor(gs, socket){
             }
             gs.setTurn = true;
             
+        }
+
+
+        if(incomingMsg.type == Messages.T_SHIPS){
+            console.log("Received opponent's ships");
+            console.table(incomingMsg.data);
+
         }
     }
 
