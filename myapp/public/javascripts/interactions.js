@@ -150,23 +150,11 @@ function ButtonsProcessor(gs, socket){
             button.removeEventListener("click", singleClick, false);
             button.remove();
             processShips(ships);
+            $("main").append("<div id=waiting>Waiting for other player</div>");
 
         });
         
     })();
-    // (function enableButton() {
-    //     $(footer).append("<button type=\"button\" id= enableButton (temp until we implement yourturn messages)>Enable buttons</button>");
-    //     var button = document.getElementById("enableButton");
-    //     button.addEventListener("click", function singleClick(e) {
-    //         gs.setTurn(true);
-    //         console.log(first);
-    //         if (first) {
-    //             ab.initialize();
-    //             first = false;
-    //         }
-    //     });
-
-    // })();
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
@@ -191,8 +179,10 @@ function ButtonsProcessor(gs, socket){
         }
 
         if(incomingMsg.type == Messages.T_GAME_STARTED) {
+            $("#waiting").remove();
             first = false;
             ab.initialize();
+            
         }
 
         if(incomingMsg.type == Messages.T_GAME_ENDED) {
