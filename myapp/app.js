@@ -33,38 +33,50 @@ var currentGame = new game(gameID++);
 wss.on("connection", function connection(ws) {
     
     let con  = ws;
+    con.id = currentGame.id;
+    websockets[con.id] = currentGame;
+
     var playerType = currentGame.addPlayer(ws);
+    if(playerType == "B") {
+        currentGame = new game(gameID++);
+    }
 
     con.send("You are player: " + playerType);
     con.send((playerType == "A") ? messages.S_PLAYER_A : messages.S_PLAYER_B);
 
-    boardCheck = function(){
-        if(currentGame.boardSet){
-            currentGame.playerA.send(messages.S_GAME_STARTED);
-            currentGame.playerB.send(messages.S_GAME_STARTED);
-            currentGame.playerA.send(messages.S_SHOOT);
+    boardCheck = function(game){
+        console.log(game.boardSet);
+        if(game.boardSet){
+            game.playerA.send(messages.S_GAME_STARTED);
+            game.playerB.send(messages.S_GAME_STARTED);
+            game.playerA.send(messages.S_SHOOT);
         }
     }
+
+    
+
     con.on("message", function incoming(message) {
         let oMsg = JSON.parse(message);
+        console.log("Retrieving gameobject for game with id " + con.id);
+        let gameObj = websockets[con.id];
 
         if(oMsg.type == messages.T_SHIPS){
             console.log("Ships received");
             if(playerType=="A"){
-                currentGame.setBoardA(oMsg.data);
-                boardCheck();
-                currentGame.playerB.send(message);
+                gameObj.setBoardA(oMsg.data);
+                boardCheck(gameObj);
+                gameObj.playerB.send(message);
             } else{ 
-                currentGame.setBoardB(oMsg.data);
-                boardCheck();
-                currentGame.playerA.send(message);
+                gameObj.setBoardB(oMsg.data);
+                boardCheck(gameObj);
+                gameObj.playerA.send(message);
             }
         }
         if(oMsg.type == messages.T_MOVE_MADE){
-            (playerType=="A")? currentGame.playerB.send(messages.S_SHOOT):currentGame.playerA.send(messages.S_SHOOT);
+            (playerType=="A")? gameObj.playerB.send(messages.S_SHOOT):gameObj.playerA.send(messages.S_SHOOT);
         }
         if(oMsg.type == messages.T_GAME_ENDED){
-            (playerType=="A")? currentGame.playerB.send(messages.S_GAME_ENDED):currentGame.playerA.send(messages.S_GAME_ENDED);
+            (playerType=="A")? gameObj.playerB.send(messages.S_GAME_ENDED):gameObj.playerA.send(messages.S_GAME_ENDED);
         }
     });
 });
