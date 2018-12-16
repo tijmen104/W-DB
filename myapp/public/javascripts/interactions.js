@@ -95,13 +95,9 @@ function ButtonsProcessor(gs, socket){
 
                     } else {
                         msg = Messages.O_MOVE_MADE;
-                        var shotsFired = document.getElementById("shotsFired");
-                        if(shotsFired.value==undefined) shotsFired.value=1;
-                        else{ ++shotsFired};
-                        // shotsFired.innerHTML = pad();
-                        var time = document.getElementById("seconds");
-                        console.log(shotsFired.value);
-                        console.log("seconds: " + time.value);
+                        var shots = document.getElementById("shotsFired");
+                        gs.shotsFired++;
+                        shots.innerHTML = gs.shotsFired;
                         msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
