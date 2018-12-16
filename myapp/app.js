@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
         req.cookies.visits = 0;
     }
     res.cookie("visits", ++req.cookies.visits);
-    res.render("splash.ejs", {gamesInitialized: gameID, visits: req.cookies.visits});
+    res.render("splash.ejs", {gamesInitialized: gameID, visits: req.cookies.visits, total: totalTime,average:averageTime});
 
 });
 
@@ -29,6 +29,9 @@ const wss = new websocket.Server({ server });
 var websockets = {};
 var gameID=0;
 var currentGame = new game(gameID++);
+var gamesFinished=0;
+var averageTime = 0;
+var totalTime=0;
 
 wss.on("connection", function connection(ws) {
     
@@ -51,8 +54,6 @@ wss.on("connection", function connection(ws) {
             game.playerA.send(messages.S_SHOOT);
         }
     }
-
-    
 
     con.on("message", function incoming(message) {
         let oMsg = JSON.parse(message);
@@ -78,6 +79,10 @@ wss.on("connection", function connection(ws) {
         }
         if(oMsg.type == messages.T_GAME_ENDED){
             (playerType=="A")? gameObj.playerB.send(messages.S_GAME_ENDED):gameObj.playerA.send(messages.S_GAME_ENDED);
+            let time = oMsg.data;
+            totalTime+=time;
+            gamesFinished++;
+            averageTime=totalTime/gamesFinished;
         }
     });
 });

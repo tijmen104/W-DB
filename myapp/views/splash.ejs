@@ -22,8 +22,11 @@
     <div id="left-tab">
       <div>
         <div id="stats">
-          <h3><%= gamesInitialized %> games</h3>
-          <h3><%= visits %> visits</h3>
+          <h2>Statistics:</h2>
+          <h3>You have visited this site  <%= visits %> times!</h3>
+          <h3>There have been: <%= gamesInitialized %> games started!</h3>
+          <h3>Total played time: <%= total %></h3>
+          <h3>Average game time: <%= average %></h3>
         </div>
       </div>
     </div>
@@ -34,9 +37,11 @@
       <h2> Welcome to Boatsboatsboats </h2>
       <p> The number one online battleship game out there!</p>
       <p>How to play:</p>
-      <p>First, drag your ships into your playing field. After placing all ships, press: "Ready". 
-        Whenever it is your turn to shoot, guess where his ships might be. 
-        The first one to sank all the boats of his opponent, wins!</p>
+      <ul>
+        <li>Drag your ships into your playing field. After placing all ships, press: "Ready". </li>
+        <li>Whenever it is your turn to shoot, guess where his ships might be. </li>
+        <li>first one to sank all the boats of his opponent, wins!</li> 
+      </ul>
     </div>
   </section>
 </main>
