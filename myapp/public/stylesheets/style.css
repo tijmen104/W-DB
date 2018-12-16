@@ -23,3 +23,7 @@ a {
   padding: 30px;
   border-radius: 20px;
 }
+
+.standardButton:hover {
+  background-color: red;
+}
