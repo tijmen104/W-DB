@@ -101,7 +101,6 @@ function ButtonsProcessor(gs, socket){
                         msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
-                    //TODO: meegeven waar je hebt geschoten (en of het raak was)
                 }
 
             });
