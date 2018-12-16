@@ -47,9 +47,9 @@ wss.on("connection", function connection(ws) {
         if(oMsg.type == messages.O_MOVE_MADE){
             (playerType=="A")? currentGame.playerB.send(messages.O_SHOOT):currentGame.playerA.send(messages.O_SHOOT);
         }
-        // if(oMsg.type == messages.T_GAME_ENDED){
-
-        // }
+        if(oMsg.type == messages.T_GAME_ENDED){
+            
+         }
     });
 });
 
