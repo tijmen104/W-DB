@@ -47,3 +47,20 @@ generatePlayerBoard = function(tableId) {
   }
   
 }
+
+updatePlayerBoard = function(coordinate, ships) {
+  if(coordinate) {
+    let row = coordinate.row;
+    let column = coordinate.column;
+    let color;
+    if(coordinate.hit) {
+      color = "red";
+    } else {
+      color = "blue";
+    }
+    
+    $("#playerBoard tr:nth-of-type(" + (row + 1) + ")" +  " td:nth-of-type(" + (column + 1) + ")").css("background-color", color);
+  }
+
+
+}

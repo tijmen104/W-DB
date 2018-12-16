@@ -34,7 +34,7 @@ function GameState (session_id, ships) {
         var row = $(button.parentElement).parent().index();
         var column = $(button.parentElement).index();
         console.log("clicked button with coordinates [" + row + "," + column + "]");
-        coordinate = [row, column];
+        coordinate = {row : row, column: column};
         var hit = false;
 
         for(i = 0; i < this.opponentShips.array.length; i++) {
@@ -56,8 +56,8 @@ function GameState (session_id, ships) {
         } else {
             button.className += " missed";
         }
-        
-        
+        coordinate.hit = hit;
+        return coordinate;
     };
 
     this.checkIfWon = function() {
@@ -83,7 +83,7 @@ function ButtonsProcessor(gs, socket){
             el.addEventListener("click", function singleClick(e){
                 if (gs.turn) {
                     var clickedLetter = e.target.id;
-                    gs.updateGame(clickedLetter);
+                    var coordinate = gs.updateGame(clickedLetter);
                     el.removeEventListener("click", singleClick, false);
                     gs.setTurn(false);
                     let msg;
@@ -92,6 +92,7 @@ function ButtonsProcessor(gs, socket){
 
                     } else {
                         msg = Messages.O_MOVE_MADE;
+                        msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
                     //TODO: meegeven waar je hebt geschoten (en of het raak was)
@@ -177,6 +178,8 @@ function ButtonsProcessor(gs, socket){
 
         if(incomingMsg.type == Messages.T_SHOOT) {
             gs.setTurn(true);
+            console.table(incomingMsg.data);
+            updatePlayerBoard(incomingMsg.data, gs.ships);
             
         }
 

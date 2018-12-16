@@ -45,7 +45,6 @@ wss.on("connection", function connection(ws) {
     con.send((playerType == "A") ? messages.S_PLAYER_A : messages.S_PLAYER_B);
 
     boardCheck = function(game){
-        console.log(game.boardSet);
         if(game.boardSet){
             game.playerA.send(messages.S_GAME_STARTED);
             game.playerB.send(messages.S_GAME_STARTED);
@@ -57,7 +56,6 @@ wss.on("connection", function connection(ws) {
 
     con.on("message", function incoming(message) {
         let oMsg = JSON.parse(message);
-        console.log("Retrieving gameobject for game with id " + con.id);
         let gameObj = websockets[con.id];
 
         if(oMsg.type == messages.T_SHIPS){
@@ -73,7 +71,10 @@ wss.on("connection", function connection(ws) {
             }
         }
         if(oMsg.type == messages.T_MOVE_MADE){
-            (playerType=="A")? gameObj.playerB.send(messages.S_SHOOT):gameObj.playerA.send(messages.S_SHOOT);
+            let messageOut = messages.O_SHOOT;
+            messageOut.data = oMsg.data;
+            let stringMsg = JSON.stringify(messageOut);
+            (playerType=="A")? gameObj.playerB.send(stringMsg):gameObj.playerA.send(stringMsg);
         }
         if(oMsg.type == messages.T_GAME_ENDED){
             (playerType=="A")? gameObj.playerB.send(messages.S_GAME_ENDED):gameObj.playerA.send(messages.S_GAME_ENDED);
