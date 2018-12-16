@@ -27,7 +27,6 @@ function GameState (session_id, ships) {
     }
 
     this.updateGame = function(clickedLetter) {
-        console.log("your turn: " + this.turn);
    
 
         var button = document.getElementById(clickedLetter)
@@ -40,7 +39,6 @@ function GameState (session_id, ships) {
 
         for(i = 0; i < this.opponentShips.array.length; i++) {
             var ship = this.opponentShips.array[i];
-            console.table("Ship: " + ship);
             var shipCoordinates = ship.coordinates;
             for (j = 0; j < shipCoordinates.length; j++) {
                 if (row == shipCoordinates[j].x && column == shipCoordinates[j].y) {
@@ -59,10 +57,18 @@ function GameState (session_id, ships) {
             button.className += " missed";
         }
         
-        console.log(button);
-        console.log('done updating');
         
     };
+
+    this.checkIfWon = function() {
+        won = true;
+        this.opponentShips.array.forEach(function(element) {
+            if(!element.sunk) {
+                won = false;
+            }
+        })
+        return won;
+    }
     
 }
 
@@ -80,9 +86,15 @@ function ButtonsProcessor(gs, socket){
                     gs.updateGame(clickedLetter);
                     el.removeEventListener("click", singleClick, false);
                     gs.setTurn(false);
-                    let msg = Messages.O_MOVE_MADE;
-                    // msg.data = ADD WHETHER PLAYER HAS WON OR NOT
+                    let msg;
+                    if(gs.checkIfWon()) {
+                        msg = Messages.O_GAME_ENDED;
+
+                    } else {
+                        msg = Messages.O_MOVE_MADE;
+                    }
                     socket.send(JSON.stringify(msg));
+                    //TODO: meegeven waar je hebt geschoten (en of het raak was)
                 }
 
             });
@@ -100,15 +112,15 @@ function ButtonsProcessor(gs, socket){
     generateBoards();
 
     ships = new Ships(); //global
-    var ship1 = new Ship(5, "ship1");
-    var ship2 = new Ship(4, "ship2");
-    var ship3 = new Ship(3, "ship3");
-    var ship4 = new Ship(3, "ship4");
+    // var ship1 = new Ship(5, "ship1");
+    // var ship2 = new Ship(4, "ship2");
+    // var ship3 = new Ship(3, "ship3");
+    // var ship4 = new Ship(3, "ship4");
     var ship5 = new Ship(2, "ship5");
-    ships.addShip(ship1);
-    ships.addShip(ship2);
-    ships.addShip(ship3);
-    ships.addShip(ship4);
+    // ships.addShip(ship1);
+    // ships.addShip(ship2);
+    // ships.addShip(ship3);
+    // ships.addShip(ship4);
     ships.addShip(ship5);
     generateShips(ships);
 
@@ -128,14 +140,9 @@ function ButtonsProcessor(gs, socket){
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;
             shipsMessage.data = ships;
-            console.log(shipsMessage);
             socket.send(JSON.stringify(shipsMessage));
-            console.table(JSON.parse(JSON.stringify(shipsMessage)));
-            console.log($(".ship"));
             
             $(".ship").each( function(index) {
-                // console.log(index);
-                // console.log($(this));
                 $(this).attr("draggable", "false");
             });
 
@@ -164,24 +171,25 @@ function ButtonsProcessor(gs, socket){
         }
 
         if(incomingMsg.type == Messages.T_SHOOT) {
-            console.log("Opponent shot");
             gs.setTurn(true);
             
         }
 
 
         if(incomingMsg.type == Messages.T_SHIPS){
-            console.log("Received opponent's ships");
             opponentShips = incomingMsg.data;
-            console.table(opponentShips);
             gs.setOpponentShips(opponentShips);
 
         }
 
         if(incomingMsg.type == Messages.T_GAME_STARTED) {
-            console.log("Game started");
             first = false;
             ab.initialize();
+        }
+
+        if(incomingMsg.type == Messages.T_GAME_ENDED) {
+            alert("YOU LOST");
+            gs.setTurn(false);
         }
     }
 
