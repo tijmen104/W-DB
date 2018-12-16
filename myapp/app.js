@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
         req.cookies.visits = 0;
     }
     res.cookie("visits", ++req.cookies.visits);
-    res.render("splash.ejs", {gamesInitialized: gameID, visits: req.cookies.visits, total: totalTime,average:averageTime});
+    res.render("splash.ejs", {gamesInitialized: gameID-1, visits: req.cookies.visits, total: totalTime,average:averageTime});
 
 });
 
@@ -62,7 +62,6 @@ wss.on("connection", function connection(ws) {
         let gameObj = websockets[con.id];
 
         if(oMsg.type == messages.T_SHIPS){
-            console.log("Ships received");
             if(playerType=="A"){
                 gameObj.setBoardA(oMsg.data);
                 boardCheck(gameObj);
@@ -81,6 +80,7 @@ wss.on("connection", function connection(ws) {
         }
         if(oMsg.type == messages.T_GAME_ENDED){
             (playerType=="A")? gameObj.playerB.send(messages.S_GAME_ENDED):gameObj.playerA.send(messages.S_GAME_ENDED);
+            console.log(oMsg.data);
             let time = oMsg.data;
             totalTime+=time;
             gamesFinished++;
