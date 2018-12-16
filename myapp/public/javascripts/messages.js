@@ -76,4 +76,14 @@
  };
 exports.S_GAME_ENDED = JSON.stringify(exports.O_GAME_ENDED);
 
+ /**
+  * Allow client to place ships;
+  */
+ exports.T_PLACE = "Place-ships";
+ exports.O_PLACE = {
+    type: exports.T_PLACE,
+    data: null
+ };
+exports.S_PLACE = JSON.stringify(exports.O_PLACE);
+
 }(typeof exports === "undefined" ? this.Messages = {} : exports)); 
