@@ -104,9 +104,23 @@ var generateShips = function(ships) {
     for (i = 0; i < ships.array.length; i++) {
         ship = ships.array[i];
         // TODO: it's not good how the sizes are hardcoded here
-        command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/LogoBBB.png\" class=ship id=" + ship.getId() + ">";
+        command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/black.png\" class=ship id=" + ship.getId() + ">";
+        // command = "<img draggable=\"true\" ondragstart=\"drag(event)\" border=\"2\" width=\"" + ship.length*60 + "px\" height=\"50px\" src=\"images/LogoBBB.png\" class=ship id=" + ship.getId() + ">";
         col += "<td>"+ command +"</td>"; 
         space++; 
     }
     $("#shipTable").append("<tr>" + col + "</tr>");
+}
+
+var processShips = function(ships) {
+    $(".ship").each( function(index) {
+        $(this).remove();
+    });
+
+
+    ships.array.forEach(function(ship) {
+        ship.coordinates.forEach(function(coordinate) {
+            $("#playerBoard tr:nth-of-type(" + (coordinate.x + 1) + ")" +  " td:nth-of-type(" + (coordinate.y + 1) + ")").css("background-color", "black");
+        })
+    })
 }

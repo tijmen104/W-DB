@@ -146,7 +146,12 @@ function ButtonsProcessor(gs, socket){
                 $(this).attr("draggable", "false");
             });
 
+            button.removeEventListener("click", singleClick, false);
+            button.remove();
+            processShips(ships);
+
         });
+        
     })();
     // (function enableButton() {
     //     $(footer).append("<button type=\"button\" id= enableButton (temp until we implement yourturn messages)>Enable buttons</button>");
