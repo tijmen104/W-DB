@@ -9,36 +9,42 @@ h1 {
 
 #left {
     float: left;
-    width: 30%;
+    width: 50%;
     height:400px;
-    background-color: #555
+    background-color: #00FFFF;
+}
+#stats{
+    margin:10px;
 }
 
 #right {
     float: left;
-    width: 70%;
+    width: 50%;
     height:400px;
     background-color: #AAA;
 }
-#logotitle{
-    position: absolute;
-    top: 100px;
-    left: 40%
+#right-tab{
+    margin: 10px
 }
 button {
     color: #fff;
     bottom: 100px;
     right: 250px;
-    font-size: 100%;
+    font-size: 200%;
     border: 5px;
     padding: 30px;
     border-radius: 20px;
+    margin-bottom: 30px;
 }
 
 button:hover {
-    background-color: #000;
-    transition: background-color 2s ease;
-    text-decoration: underline overline;
+    background-color: red;
+    transition: blink-animation 1s ease;
 }
+@keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
 
 
