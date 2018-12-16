@@ -147,11 +147,13 @@ function ButtonsProcessor(gs, socket){
         
         if(incomingMsg.type == Messages.T_PLAYER_TYPE){
             if(incomingMsg.data == "A"){
+                console.log("You a player A");
                 // TODO: add function show board of A
                 // showBoardOfA();
                 
             }
             if(incomingMsg.data == "B"){
+                console.log("You are player B");
                 // TODO: add function show board of A
                 // showBoardOfB();
 
@@ -159,6 +161,7 @@ function ButtonsProcessor(gs, socket){
         }
 
         if(incomingMsg.type == Messages.T_SHOOT) {
+            console.log("Opponent shot");
             if(first) {
                 first = false;
                 ab.initialize();
