@@ -74,5 +74,6 @@
     type: exports.T_GAME_ENDED,
     data: null
  };
+exports.S_GAME_ENDED = JSON.stringify(O_GAME_ENDED);
 
 }(typeof exports === "undefined" ? this.Messages = {} : exports)); 
