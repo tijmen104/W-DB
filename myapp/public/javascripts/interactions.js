@@ -135,8 +135,8 @@ function ButtonsProcessor(gs, socket){
     
     var first= true;
 
-    (function messageButton() {
-        $(footer).append("<button type=\"button\" id= messageButton>Ready!</button>");
+    function messageButton() {
+        $(footer).append("<button class=standardButton type=\"button\" id= messageButton>Ready!</button>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;
@@ -154,7 +154,7 @@ function ButtonsProcessor(gs, socket){
 
         });
         
-    })();
+    };
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
