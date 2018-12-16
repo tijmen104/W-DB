@@ -12,6 +12,12 @@ app.use(express.static(__dirname + "/public"));
 app.get("/game",indexRouter);
 app.get("/splash",indexRouter);
 
+app.get("/", (req, res) => {
+    res.render("splash.ejs", {gamesInitialized: 9999999999});
+    // res.render("splash.ejs", { gamesInitialized: gameStatus.gamesInitialized, gamesCompleted: gameStatus.gamesCompleted });
+
+});
+
 var server = http.createServer(app);
 const wss = new websocket.Server({ server });
 var websockets = {};
