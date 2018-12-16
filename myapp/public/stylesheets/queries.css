@@ -1,0 +1,7 @@
+@media (max-width: 1500px) {
+/* @media only screen { */
+
+    #warning {
+      display:block !important;
+    }    
+}
