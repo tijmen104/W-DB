@@ -157,7 +157,7 @@ function ButtonsProcessor(gs, socket){
             button.removeEventListener("click", singleClick, false);
             button.remove();
             processShips(ships);
-            $("main").append("<div id=waiting>Waiting for other player</div>");
+            $("#gameHeader").append("<div class=\"waiting standardButton\">Waiting for other player</div>");
 
         });
         
