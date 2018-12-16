@@ -8,10 +8,10 @@
     <body>
         <main>
             <header>
-                <div class="head-container" id="gameheader">
-                    <div class="head-square">
+                <div class="head-container">
+                    <div class="head-square" id="gameHeader">
                         <img src="images/LogoBBB.png" alt="Logo" id="logo"> 
-                        <div  class="waiting" id="waitingforjoin">Waiting for other player to join...</div>
+                        <div  class="waiting standardButton" id="waitingforjoin">Waiting for other player to join...</div>
                     </div>
                 </div>
             </header>
@@ -39,11 +39,14 @@
         </main>
 
             <footer id="footer">
-                <span>Time passed</span>
-                <span><label id="minutes">00</label>:<label id="seconds">00</label></span>
-                <span>Shots fired</span>
-                <span><label id = "shotsFired">0</span>
-                <span>Opponent name</span>
+                <div class="head-container" id="footHeader">
+                    <div class="head-square standardButton">
+                        <span class="stat">Time passed
+                        <label id="minutes">00</label>:<label id="seconds">00</label></span>
+                        <span class="stat">Shots fired
+                        <label id = "shotsFired">0</span>
+                    </div>
+                </div>
             </footer>
         </main>
 

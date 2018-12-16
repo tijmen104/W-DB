@@ -13,7 +13,6 @@
 
 .ship {
   z-index: -1;
-  border-radius: 50px;
 }
 
 .boardButton:active {
@@ -26,8 +25,14 @@ footer {
 
 .waiting {
   font-size: 50pt;
-  background-color: white;
-  margin-bottom: 30px;
+}
+
+.stat {
+  margin: 30px;
+}
+
+#footHeader {
+  margin-top: 30px;
 }
 
   

@@ -92,6 +92,8 @@ function ButtonsProcessor(gs, socket){
                         alert("you won!");
                         msg = Messages.O_GAME_ENDED;
                         msg.data = totalSeconds;
+                        alert("You won!");          
+
 
                     } else {
                         msg = Messages.O_MOVE_MADE;
@@ -143,7 +145,7 @@ function ButtonsProcessor(gs, socket){
     var first= true;
 
     function messageButton() {
-        $(footer).append("<button class=standardButton type=\"button\" id= messageButton>Ready!</button>");
+        $("#gameHeader").append("<div><button class=standardButton type=\"button\" id= messageButton>Ready!</button></div>");
         var button = document.getElementById("messageButton");
         button.addEventListener("click", function singleClick(e) {
             let shipsMessage = Messages.O_SHIPS_SET;

@@ -16,8 +16,7 @@ a {
 
 .standardButton {
   color: #fff;
-  bottom: 100px;
-  right: 250px;
+  background-color: grey;
   font-size: 200%;
   border: 5px;
   padding: 30px;

@@ -22,6 +22,8 @@
   table-layout:fixed;
   width:480px;
   height:480px;
+  margin-bottom: 30px;
+  margin-top:30px;
 }
 
 .board tr td { 
