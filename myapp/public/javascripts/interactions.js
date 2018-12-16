@@ -80,7 +80,7 @@ function ButtonsProcessor(gs, socket){
                     gs.updateGame(clickedLetter);
                     el.removeEventListener("click", singleClick, false);
                     gs.setTurn(false);
-                    let msg = Messages.O_SHOT;
+                    let msg = Messages.O_MOVE_MADE;
                     // msg.data = ADD WHETHER PLAYER HAS WON OR NOT
                     socket.send(JSON.stringify(msg));
                 }

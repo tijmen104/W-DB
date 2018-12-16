@@ -50,11 +50,11 @@ wss.on("connection", function connection(ws) {
         }
 
         if(oMsg.type == messages.T_GAME_STARTED){
-            (playerType=="A")? currentGame.playerB.send(messages.O_SHOOT):currentGame.playerA.send(messages.O_SHOOT);
+            (playerType=="A")? currentGame.playerB.send(messages.S_SHOOT):currentGame.playerA.send(messages.S_SHOOT);
         }
 
         if(oMsg.type == messages.T_MOVE_MADE){
-            (playerType=="A")? currentGame.playerB.send(messages.O_SHOOT):currentGame.playerA.send(messages.O_SHOOT);
+            (playerType=="A")? currentGame.playerB.send(messages.S_SHOOT):currentGame.playerA.send(messages.S_SHOOT);
         }
         if(oMsg.type == messages.T_GAME_ENDED){
             

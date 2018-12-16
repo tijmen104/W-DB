@@ -57,15 +57,7 @@
    }
    exports.S_SHOOT = JSON.stringify(exports.O_SHOOT);
 
-    /*
-    * client to server: I shot
-    */
-   exports.T_SHOT = "I-shot";
-   exports.O_SHOT = {
-       type: exports.T_SHOT,
-       data: null
-    };
-   
+  
   /*
   * Client to server: move made
   */
