@@ -68,6 +68,7 @@ body {
 
   .ship {
     z-index: -1;
+    background-color: black;
   }
 
   button:active {
