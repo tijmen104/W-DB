@@ -6,15 +6,21 @@ var messages = require("./public/javascripts/messages");
 var port = process.argv[2];
 var app = express();
 var indexRouter = require("./routes/index");
+var cookies = require("cookie-parser");
 
 app.use(express.static(__dirname + "/public"));
+app.use(cookies("doesn't matter"));
 
 app.get("/game",indexRouter);
 app.get("/splash",indexRouter);
 
 app.get("/", (req, res) => {
+    console.log(req.cookies);
+    if (!req.cookies.visits) {
+        req.cookies.visits = 0;
+    }
+    res.cookie("visits", ++req.cookies.visits);
     res.render("splash.ejs", {gamesInitialized: 9999999999});
-    // res.render("splash.ejs", { gamesInitialized: gameStatus.gamesInitialized, gamesCompleted: gameStatus.gamesCompleted });
 
 });
 
