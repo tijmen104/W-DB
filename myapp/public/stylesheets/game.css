@@ -34,5 +34,11 @@ footer {
 #footHeader {
   margin-top: 30px;
 }
+.foot-container {
+  text-align: center;
+}
+.foot-container:not(:fullscreen) {
+  text-align: center;
+}
 
   

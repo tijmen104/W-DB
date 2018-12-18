@@ -141,6 +141,12 @@ function ButtonsProcessor(gs, socket){
     var ab = new ButtonsProcessor(gs, socket);
     
     var first= true;
+    $('#fs-toggle').click(function(){
+    let board = $('#opponentBoard')[0];
+    board.requestFullscreen();
+    });
+
+    
 
     function messageButton() {
         $("#gameHeader").append("<div><button class=standardButton type=\"button\" id= messageButton>Ready!</button></div>");
