@@ -61,7 +61,7 @@ function drop(ev) {
     var row = $(ev.target).parent().parent().index();
     var column = $(ev.target).parent().index();
     console.log("Dropped front of ship on coordinates [" + row + "," + column + "]");
-    if (validateCoordinates(row, column)) {
+    if (validateCoordinates(row, column, data)) {
         ev.target.parentElement.appendChild(document.getElementById(data));
         ev.target.style.height = "0px";
         ev.target.style.width = "0px";
@@ -92,8 +92,18 @@ function drop(ev) {
     
 }
 
-var validateCoordinates = function (row, column) {
-    return true; //TODO
+var validateCoordinates = function (row, column, data) {
+    length = null;
+    var findLength = function(ship) {
+        if (ship.id == data) {
+            length = ship.length;
+        }
+    }
+    ships.array.forEach(findLength);
+    if(length+column > boardSize) {
+        return false;
+    }
+    return true //todo
 }
 
 
