@@ -93,14 +93,39 @@ function drop(ev) {
 }
 
 var validateCoordinates = function (row, column, data) {
-    length = null;
-    var findLength = function(ship) {
+    var length = null;
+    var dropCoordinates = [];
+
+    var findLengthAndCoordinates = function(ship) {
         if (ship.id == data) {
             length = ship.length;
+            for (i =0; i < ship.length; i++) {
+                dropCoordinates.push(new Coordinate(row, column+i));
+            }
         }
     }
-    ships.array.forEach(findLength);
+    ships.array.forEach(findLengthAndCoordinates);
     if(length+column > boardSize) {
+        return false;
+    }
+
+    var overlap = false;
+    var checkOverlap = function(ship) {
+        if (ship.coordinates) {
+            for (i = 0; i < ship.coordinates.length; i++) {
+                for (j=0; j <dropCoordinates.length; j++) {
+                    if (dropCoordinates[j].x == ship.coordinates[i].x && dropCoordinates[j].y == ship.coordinates[i].y) {
+                        console.log("overlap at row" + dropCoordinates[j].x + " and column " + dropCoordinates[j].y);
+                        overlap = true;
+                    }
+                }
+    
+            }
+        }
+
+    }
+    ships.array.forEach(checkOverlap);
+    if(overlap) {
         return false;
     }
     return true //todo
