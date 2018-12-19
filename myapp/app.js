@@ -87,6 +87,26 @@ wss.on("connection", function connection(ws) {
             averageTime=totalTime/gamesFinished;
         }
     });
+    con.on("close", function(code){
+        console.log(con.id + "disconnected");
+        let gameObj = websockets[con.id];
+
+        try{
+            gameObj.playerA.send(messages.S_GAME_ABORTED);
+            gameObj.playerA.close();
+            gameObj.playerA=null;
+        }catch(err){
+            console.log("Player A already disconnected");
+        }
+        try{
+            gameObj.playerB.send(messages.S_GAME_ABORTED);
+            gameObj.playerB.close();
+            gameObj.playerB = null;
+        }
+        catch(err){
+            console.log("Player B already disconnected");
+        }
+    });
 });
 
 server.listen(port);

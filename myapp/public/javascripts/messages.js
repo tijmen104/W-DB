@@ -86,4 +86,13 @@ exports.S_GAME_ENDED = JSON.stringify(exports.O_GAME_ENDED);
  };
 exports.S_PLACE = JSON.stringify(exports.O_PLACE);
 
+    /*
+    * server to client: your turn to shoot
+    */
+   exports.T_GAME_ABORTED = "GAME-ABORTED";
+   exports.O_GAME_ABORTED = {
+       type: exports.T_GAME_ABORTED
+   }
+   exports.S_GAME_ABORTED = JSON.stringify(exports.O_GAME_ABORTED);
+
 }(typeof exports === "undefined" ? this.Messages = {} : exports)); 

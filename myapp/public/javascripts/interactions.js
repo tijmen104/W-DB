@@ -206,6 +206,9 @@ function ButtonsProcessor(gs, socket){
             $("#waitingforjoin").remove();
             messageButton();
         }
+        if(incomingMsg.type == Messages.T_GAME_ABORTED){
+            alert("Other player aborted game");
+        }
     }
 
     function counter(){
