@@ -29,7 +29,6 @@ function GameState (session_id, ships) {
 
     this.updateGame = function(clickedLetter) {
    
-
         var button = document.getElementById(clickedLetter)
 
         var row = $(button.parentElement).parent().index();
@@ -49,7 +48,6 @@ function GameState (session_id, ships) {
                     hit = true;
                 }
             }
-
         }
         if (hit) {
             console.log(button.className);
@@ -93,8 +91,6 @@ function ButtonsProcessor(gs, socket){
                         msg = Messages.O_GAME_ENDED;
                         msg.data = totalSeconds;
                         alert("You won!");          
-
-
                     } else {
                         msg = Messages.O_MOVE_MADE;
                         var shots = document.getElementById("shotsFired");
@@ -103,6 +99,7 @@ function ButtonsProcessor(gs, socket){
                         msg.data = coordinate; 
                     }
                     socket.send(JSON.stringify(msg));
+                    $("#yourTurn").remove();
                     setTimeout(function () {
                         new Audio("../data/gun.wav").play();
                     }, 200);
@@ -168,6 +165,9 @@ function ButtonsProcessor(gs, socket){
         });
         
     };
+    function yourTurn(){
+        $("#gameHeader").append("<div><button class=standardButton type=\"button\" id= yourTurn>Your turn!</button></div>");
+    }
 
     socket.onmessage = function(event){
         let incomingMsg = JSON.parse(event.data);
@@ -179,7 +179,7 @@ function ButtonsProcessor(gs, socket){
 
         if(incomingMsg.type == Messages.T_SHOOT) {
             gs.setTurn(true);
-            alert("your turn!");
+            yourTurn();
             console.table(incomingMsg.data);
             updatePlayerBoard(incomingMsg.data, gs.ships);
             
