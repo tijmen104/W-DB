@@ -38,21 +38,31 @@ wss.on("connection", function connection(ws) {
     let con  = ws;
     con.id = currentGame.id;
     websockets[con.id] = currentGame;
-
+    console.log(con.id);
     var playerType = currentGame.addPlayer(ws);
     if(playerType == "B") {
-        currentGame.playerA.send(messages.S_PLACE);
-        currentGame.playerB.send(messages.S_PLACE);
-        currentGame = new game(gameID++);
+        console.log(con.id);
+        try{
+            currentGame.playerA.send(messages.S_PLACE);
+            currentGame.playerB.send(messages.S_PLACE);
+            currentGame = new game(gameID++);
+        }catch(e){
+            console.log(currentGame.playerA[0]==undefined);
+            console.log("connection closed");
+        }
     }
 
     con.send((playerType == "A") ? messages.S_PLAYER_A : messages.S_PLAYER_B);
 
     boardCheck = function(game){
         if(game.boardSet){
-            game.playerA.send(messages.S_GAME_STARTED);
-            game.playerB.send(messages.S_GAME_STARTED);
-            game.playerA.send(messages.S_SHOOT);
+            try{
+                game.playerA.send(messages.S_GAME_STARTED);
+                game.playerB.send(messages.S_GAME_STARTED);
+                game.playerA.send(messages.S_SHOOT);
+            }catch(e){
+                console.log("conn closed");
+            }
         }
     }
 
@@ -88,7 +98,6 @@ wss.on("connection", function connection(ws) {
     });
     con.on("close", function(code){
         let gameObj = websockets[con.id];
-
         try{
             gameObj.playerA.send(messages.S_GAME_ABORTED);
             gameObj.playerA.close();
@@ -104,6 +113,7 @@ wss.on("connection", function connection(ws) {
         catch(err){
             console.log("Player B already disconnected");
         }
+        currentGame = new game(gameID++);
     });
 });
 
