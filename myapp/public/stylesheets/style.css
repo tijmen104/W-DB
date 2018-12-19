@@ -5,7 +5,18 @@
   color: red;
   display:none;
 }
-
+#logo {
+  width: 350px;
+  height: 100;
+  margin-bottom: 30px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  margin-top:5px;
+}
 body {
   /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
