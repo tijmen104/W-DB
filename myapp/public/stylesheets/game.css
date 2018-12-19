@@ -40,5 +40,12 @@ footer {
 .foot-container:not(:fullscreen) {
   text-align: center;
 }
+.fs-button{
+  float:left;
+}
+.home-button{
+  float:left;
+  margin-right: 10px;
+}
 
   

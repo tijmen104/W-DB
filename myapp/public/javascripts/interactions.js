@@ -179,6 +179,7 @@ function ButtonsProcessor(gs, socket){
 
         if(incomingMsg.type == Messages.T_SHOOT) {
             gs.setTurn(true);
+            alert("your turn!");
             console.table(incomingMsg.data);
             updatePlayerBoard(incomingMsg.data, gs.ships);
             

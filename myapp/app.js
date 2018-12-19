@@ -15,7 +15,6 @@ app.get("/game",indexRouter);
 app.get("/splash",indexRouter);
 
 app.get("/", (req, res) => {
-    console.log(req.cookies);
     if (!req.cookies.visits) {
         req.cookies.visits = 0;
     }
@@ -88,7 +87,6 @@ wss.on("connection", function connection(ws) {
         }
     });
     con.on("close", function(code){
-        console.log(con.id + "disconnected");
         let gameObj = websockets[con.id];
 
         try{
