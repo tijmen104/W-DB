@@ -9,6 +9,7 @@
 body {
   /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 5px;
 }
 
 a {
@@ -29,14 +30,13 @@ a {
   border: 5px;
   padding: 30px;
   border-radius: 20px;
+  -webkit-transition: background-color 2s; 
+  -moz-transition: background-color 2s; 
+  -ms-transition: background-color 2s; 
+  -o-transition: background-color 2s; 
+  transition: background-color 2s;  
 }
 
 .standardButton:hover {
   background-color: red;
-}
-h3{
-  font-size: 100%;
-}
-ul {
-  font-size: 100%;
 }

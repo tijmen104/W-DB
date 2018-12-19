@@ -7,45 +7,43 @@
   </head>
   <body>
     <main>
-    <section id="top">
-      <div class ="head-container">
-        <div class="head-square" id="logo">
-          <img src="images/LogoBBB.png" alt="Game logo" height="100" width="350">
-          <h1>boatsboatsboats</h1>
-          <div  id="warning">Your experience would be improved by using a larger screen</div>
-          <form action = "./game">
-            <button type="submit" id="start_game_button" class="standardButton" >Start game!</button>
-          </form>
+      <section id="top">
+        <div class ="head-container">
+          <div class="head-square" id="logo">
+            <img src="images/LogoBBB.png" alt="Game logo" height="100" width="350">
+            <h1 id="title">Boatsboatsboats</h1>
+            <div  id="warning">Your experience would be improved by using a larger screen</div>
+            <form action = "./game">
+              <button type="submit" id="start_game_button" class="standardButton" >Start game!</button>
+            </form>
+          </div>
         </div>
-      </div>
-  </section>
-
-  <section id="left">
-    <div id="left-tab">
-      <div>
-        <div id="stats">
-          <h2>Statistics:</h2>
-          <h3>You have visited this site  <%= visits %> times!</h3>
-          <h3>There have been: <%= gamesInitialized %> games started!</h3>
-          <h3>Total played time: <%= total %> seconds! </h3>
-          <h3>Average game time: <%= average %> seconds! </h3>
+      </section>
+      <section>
+        <div id="text" class="head-container">
+          <div id="left-tab" class="head-square info border tab">
+            <div id="statistics">
+              <h2>Statistics:</h2>
+              <h3>You have visited this site  <%= visits %> times!</h3>
+              <h3>There have been: <%= gamesInitialized %> games started!</h3>
+              <h3>Total played time: <%= total %> seconds!</h3>
+              <h3>Average game time: <%= average %> seconds!</h3>
+            </div>
+          </div>
+          <div id="right-tab" class="head-square info border tab">
+            <div id="tutorial">
+              <h2> Welcome to Boatsboatsboats!</h2>
+              <h3> The number one online battleship game out there!</h3>
+              <h3>How to play:</h3>
+              <ul>
+                <li>Drag your ships into your playing field. After placing all ships, press: "Ready". </li>
+                <li>Whenever it is your turn to shoot, guess where your opponents ships might be. </li>
+                <li>first one to sank all the boats of the other, wins!</li> 
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="right">
-    <div id="right-tab">
-      <h2> Welcome to Boatsboatsboats!</h2>
-      <h3> The number one online battleship game out there!</h3>
-      <h3>How to play:</h3>
-      <ul>
-        <li>Drag your ships into your playing field. After placing all ships, press: "Ready". </li>
-        <li>Whenever it is your turn to shoot, guess where your opponents ships might be. </li>
-        <li>first one to sank all the boats of the other, wins!</li> 
-      </ul>
-    </div>
-  </section>
-</main>
+      </section>
+    </main>
   </body>
 </html>

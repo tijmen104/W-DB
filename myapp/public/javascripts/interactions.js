@@ -188,7 +188,6 @@ function ButtonsProcessor(gs, socket){
         if(incomingMsg.type == Messages.T_SHIPS){
             opponentShips = incomingMsg.data;
             gs.setOpponentShips(opponentShips);
-
         }
 
         if(incomingMsg.type == Messages.T_GAME_STARTED) {

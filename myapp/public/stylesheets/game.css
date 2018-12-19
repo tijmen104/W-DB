@@ -5,7 +5,17 @@
   width: 500px;
   height: auto;
   margin-bottom: 30px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  margin-top:5px;
 } 
+#gameHeader{
+  margin-top:150px;
+}
 
 #shipTable {
   clear: both;
@@ -47,5 +57,3 @@ footer {
   float:left;
   margin-right: 10px;
 }
-
-  

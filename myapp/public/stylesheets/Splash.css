@@ -6,31 +6,63 @@ h1 {
     left: 50px;
     color: black;
 }
+h2 {
+    font-size:200%;
+}
+h3{
+    font-size:150%;
+}
+ul{
+    font-size:150%;
+}
 
-#left {
-    float: left;
-    width: 50%;
+.info{
+    color: black;
+    width: 40%;
     height:400px;
-    background-color: #00FFFF;
+    margin-top:0px;
+    padding:20px;
+    position: relative;
 }
-#stats{
-    margin:10px;
+.border{
+    border-color: rgb(59, 59, 59);
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
 }
-
-#right {
-    float: left;
-    width: 50%;
-    height:400px;
-    background-color: #AAA;
-}
-#right-tab{
-    margin: 10px
-}
-
+.tab{
+    background-color: rgba(128, 128, 128, 0.767);
+    vertical-align: top;
+    text-align:left;
+    margin-left:25px;
+    margin-right:25px;
+    margin-top:10px;
+} 
 #start_game_button {
     margin-bottom: 30px;
+    width:250px;
+}
+#start_game_button:hover{
+    animation-name: resizeStart;
+    animation-duration: 2s;
 }
 
-
-
-
+#statistics{
+    margin: 15px;
+}
+#tutorial{
+    margin:15px;
+}
+#statistics h3:hover{
+    color:red;
+}
+#statistics h3:hover:after{
+    content:"!!!!!!!!!";
+}
+#statistics h3:hover:before{
+    content:"!!!!!!!!!";
+}
+@keyframes resizeStart{
+    0%   {width: 250px;}
+    100% {width: 500px;}
+}
